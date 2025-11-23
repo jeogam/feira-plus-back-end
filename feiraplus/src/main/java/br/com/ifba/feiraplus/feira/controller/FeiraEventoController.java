@@ -2,7 +2,9 @@ package br.com.ifba.feiraplus.feira.controller;
 
 import br.com.ifba.feiraplus.feira.entity.FeiraEvento;
 import br.com.ifba.feiraplus.feira.service.IFeiraEventoService;
+import br.com.ifba.feiraplus.feira.exception.FeiraEventoNotFoundException;
 
+import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,9 @@ public class FeiraEventoController implements IFeiraEventoController {
     @PostMapping
     public ResponseEntity<FeiraEvento> save(@RequestBody FeiraEvento feira) {
         FeiraEvento novaFeira = service.save(feira);
-        return ResponseEntity.ok(novaFeira);
+        return ResponseEntity
+                .created(URI.create("/feiras/eventos/" + novaFeira.getId()))
+                .body(novaFeira);
     }
 
     @Override
@@ -52,5 +56,19 @@ public class FeiraEventoController implements IFeiraEventoController {
     public ResponseEntity<List<FeiraEvento>> findAll() {
         List<FeiraEvento> feiras = service.findAll();
         return ResponseEntity.ok(feiras);
+    }
+
+    @RestControllerAdvice
+    public class ExceptionHandlerConfig {
+
+        @ExceptionHandler(FeiraEventoNotFoundException.class)
+        public ResponseEntity<String> notFound(Exception e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+
+        @ExceptionHandler(IllegalArgumentException.class)
+        public ResponseEntity<String> badRequest(Exception e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
     }
 }

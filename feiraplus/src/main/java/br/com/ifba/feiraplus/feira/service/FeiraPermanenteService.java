@@ -1,6 +1,7 @@
 package br.com.ifba.feiraplus.feira.service;
 
 import br.com.ifba.feiraplus.feira.entity.FeiraPermanente;
+import br.com.ifba.feiraplus.feira.exception.FeiraPermanenteNotFoundException;
 import br.com.ifba.feiraplus.feira.repository.FeiraPermanenteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,18 @@ public class FeiraPermanenteService implements IFeiraPermanenteService {
 
     @Override
     public FeiraPermanente save(FeiraPermanente feira) {
-        return repository.save(feira);
+        validar(feira);
+        FeiraPermanente saved = repository.save(feira);
+        auditar("CRIAR", saved.getId());
+        return saved;
     }
 
     @Override
     public FeiraPermanente update(Long id, FeiraPermanente feira) {
+        validar(feira);
+
         FeiraPermanente existente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Feira permanente não encontrada"));
+                .orElseThrow(() -> new FeiraPermanenteNotFoundException(id));
 
         existente.setNome(feira.getNome());
         existente.setLocal(feira.getLocal());
@@ -30,25 +36,46 @@ public class FeiraPermanenteService implements IFeiraPermanenteService {
         existente.setHoraFechamento(feira.getHoraFechamento());
         existente.setFrequencia(feira.getFrequencia());
 
-        return repository.save(existente);
+        FeiraPermanente atualizado = repository.save(existente);
+        auditar("ATUALIZAR", id);
+        return atualizado;
     }
 
     @Override
     public void delete(Long id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Feira permanente não encontrada");
+            throw new FeiraPermanenteNotFoundException(id);
         }
         repository.deleteById(id);
+        auditar("DELETAR", id);
     }
 
     @Override
     public FeiraPermanente findById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Feira permanente não encontrada"));
+                .orElseThrow(() -> new FeiraPermanenteNotFoundException(id));
     }
 
     @Override
     public List<FeiraPermanente> findAll() {
         return repository.findAll();
+    }
+
+    private void validar(FeiraPermanente feira) {
+        if (feira.getNome() == null || feira.getNome().isBlank()) {
+            throw new IllegalArgumentException("Nome é obrigatório");
+        }
+
+        if (feira.getLocal() == null || feira.getLocal().isBlank()) {
+            throw new IllegalArgumentException("Local é obrigatório");
+        }
+
+        if (feira.getFrequencia() == null) {
+            throw new IllegalArgumentException("Frequência é obrigatória");
+        }
+    }
+
+    private void auditar(String acao, Long id) {
+        System.out.println("AÇÃO: " + acao + " FEIRA PERMANENTE: " + id);
     }
 }
