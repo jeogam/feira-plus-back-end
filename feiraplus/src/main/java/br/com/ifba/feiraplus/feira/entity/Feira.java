@@ -13,7 +13,7 @@ public abstract class Feira {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFeira;
+    private Long id;
 
     private String nome;
 

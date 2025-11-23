@@ -2,7 +2,9 @@ package br.com.ifba.feiraplus.feira.controller;
 
 import br.com.ifba.feiraplus.feira.entity.FeiraEvento;
 import br.com.ifba.feiraplus.feira.service.IFeiraEventoService;
+import br.com.ifba.feiraplus.feira.exception.FeiraEventoNotFoundException;
 
+import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

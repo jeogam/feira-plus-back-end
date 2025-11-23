@@ -1,6 +1,7 @@
 package br.com.ifba.feiraplus.feira.service;
 
 import br.com.ifba.feiraplus.feira.entity.FeiraEvento;
+import br.com.ifba.feiraplus.feira.exception.FeiraEventoNotFoundException;
 import br.com.ifba.feiraplus.feira.repository.FeiraEventoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

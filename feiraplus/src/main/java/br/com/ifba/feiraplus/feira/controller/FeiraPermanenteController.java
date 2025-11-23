@@ -2,6 +2,9 @@ package br.com.ifba.feiraplus.feira.controller;
 
 import br.com.ifba.feiraplus.feira.entity.FeiraPermanente;
 import br.com.ifba.feiraplus.feira.service.IFeiraPermanenteService;
+import br.com.ifba.feiraplus.feira.exception.FeiraPermanenteNotFoundException;
+import java.net.URI;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,9 @@ public class FeiraPermanenteController implements IFeiraPermanenteController {
     @PostMapping
     public ResponseEntity<FeiraPermanente> save(@RequestBody FeiraPermanente feira) {
         FeiraPermanente novaFeira = service.save(feira);
-        return ResponseEntity.ok(novaFeira);
+        return ResponseEntity
+                .created(URI.create("/feiras/permanentes/" + novaFeira.getId()))
+                .body(novaFeira);
     }
 
     @Override
