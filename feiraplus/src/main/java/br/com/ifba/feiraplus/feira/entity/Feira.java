@@ -1,5 +1,6 @@
 package br.com.ifba.feiraplus.feira.entity;
 
+import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,11 +10,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public abstract class Feira {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+public abstract class Feira extends PersistenceEntity {
 
   private String nome;
 
