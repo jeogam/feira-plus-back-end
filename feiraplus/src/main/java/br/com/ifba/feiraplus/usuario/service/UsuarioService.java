@@ -5,8 +5,11 @@ import br.com.ifba.feiraplus.usuario.repository.UsuarioRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import br.com.ifba.feiraplus.usuario.exception.*;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class UsuarioService implements IUsuarioService{
 
   @Autowired
