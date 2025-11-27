@@ -6,18 +6,21 @@ import lombok.*;
 
 import java.time.LocalTime;
 
+@Entity
+@Table(name = "feira")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass
+@EqualsAndHashCode(callSuper = true)
 public abstract class Feira extends PersistenceEntity {
 
-  private String nome;
+    private String nome;
 
-  private String local;
+    private String local;
 
-  private LocalTime horaAbertura;
+    private LocalTime horaAbertura;
 
-  private LocalTime horaFechamento;
+    private LocalTime horaFechamento;
 
 }

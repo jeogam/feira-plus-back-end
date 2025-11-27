@@ -1,4 +1,4 @@
-package br.com.ifba.feiraplus.features.feira.entity;
+package br.com.ifba.feiraplus.features.feira.enums;
 
 public enum Frequencia {
   DIARIO,
