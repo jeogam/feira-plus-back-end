@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name = "feira_evento")
 public class FeiraEvento extends Feira {
 
-    private LocalDate dataInicio;
+  private LocalDate dataInicio;
 
-    private LocalDate dataFim;
+  private LocalDate dataFim;
 }

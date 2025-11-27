@@ -11,16 +11,16 @@ import java.time.LocalTime;
 @MappedSuperclass
 public abstract class Feira {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String nome;
+  private String nome;
 
-    private String local;
+  private String local;
 
-    private LocalTime horaAbertura;
+  private LocalTime horaAbertura;
 
-    private LocalTime horaFechamento;
+  private LocalTime horaFechamento;
 
 }

@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IFeiraPermanenteService {
 
-    FeiraPermanente save(FeiraPermanente feira);
+  FeiraPermanente save(FeiraPermanente feira);
 
-    FeiraPermanente update(Long id, FeiraPermanente feira);
+  FeiraPermanente update(Long id, FeiraPermanente feira);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    FeiraPermanente findById(Long id);
+  FeiraPermanente findById(Long id);
 
-    List<FeiraPermanente> findAll();
+  List<FeiraPermanente> findAll();
 }

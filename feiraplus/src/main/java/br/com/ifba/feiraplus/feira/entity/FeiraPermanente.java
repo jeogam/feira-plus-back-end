@@ -10,6 +10,6 @@ import lombok.*;
 @Table(name = "feira_permanente")
 public class FeiraPermanente extends Feira {
 
-    @Enumerated(EnumType.STRING)
-    private Frequencia frequencia;
+  @Enumerated(EnumType.STRING)
+  private Frequencia frequencia;
 }

@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IFeiraEventoService {
 
-    FeiraEvento save(FeiraEvento feira);
+  FeiraEvento save(FeiraEvento feira);
 
-    FeiraEvento update(Long id, FeiraEvento feira);
+  FeiraEvento update(Long id, FeiraEvento feira);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    FeiraEvento findById(Long id);
+  FeiraEvento findById(Long id);
 
-    List<FeiraEvento> findAll();
+  List<FeiraEvento> findAll();
 }

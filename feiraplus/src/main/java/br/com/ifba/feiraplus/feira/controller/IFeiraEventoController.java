@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface IFeiraEventoController {
 
-    ResponseEntity<FeiraEvento> save(FeiraEvento feira);
+  ResponseEntity<FeiraEvento> save(FeiraEvento feira);
 
-    ResponseEntity<FeiraEvento> update(Long id, FeiraEvento feira);
+  ResponseEntity<FeiraEvento> update(Long id, FeiraEvento feira);
 
-    ResponseEntity<Void> delete(Long id);
+  ResponseEntity<Void> delete(Long id);
 
-    ResponseEntity<FeiraEvento> findById(Long id);
+  ResponseEntity<FeiraEvento> findById(Long id);
 
-    ResponseEntity<List<FeiraEvento>> findAll();
+  ResponseEntity<List<FeiraEvento>> findAll();
 }
