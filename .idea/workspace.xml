@@ -54,11 +54,16 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="br.com.ifba.feiraplus" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="feiraplus" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.ifba.feiraplus.feiraplus.Application" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.ifba.feiraplus.Application" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,7 +92,7 @@
       <workItem from="1763987760279" duration="151000" />
       <workItem from="1763990551950" duration="26000" />
       <workItem from="1763993192452" duration="6000" />
-      <workItem from="1764268595629" duration="1035000" />
+      <workItem from="1764268595629" duration="1546000" />
     </task>
     <servers />
   </component>
