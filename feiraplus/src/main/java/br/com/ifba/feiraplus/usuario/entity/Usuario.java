@@ -2,10 +2,11 @@ package br.com.ifba.feiraplus.usuario.entity;
 
 import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 
-
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
