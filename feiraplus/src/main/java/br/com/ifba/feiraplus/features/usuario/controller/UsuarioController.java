@@ -20,7 +20,6 @@ public class UsuarioController implements IUsuarioController{
 
   @Override
   @PostMapping
-  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Usuario> save(@RequestBody Usuario user) {
     Usuario newUser = service.save(user);
     return ResponseEntity

@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/autenticacao/controller/AutenticacaoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/autenticacao/dto/LoginRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/autenticacao/dto/TokenResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/ApplicationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/jwt/JwtAuthorizarionFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/jwt/JwtTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/repository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,9 +130,22 @@
       <workItem from="1764268595629" duration="1546000" />
       <workItem from="1764270166965" duration="685000" />
     </task>
+    <task id="LOCAL-00001" summary="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos">
+      <option name="closed" value="true" />
+      <created>1764301646603</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764301646603</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos" />
   </component>
 </project>

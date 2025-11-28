@@ -34,6 +34,8 @@
                     .authorizeHttpRequests(authorize -> authorize
                             // PERMITIR LOGIN: O endpoint de login deve ser público para que se possa gerar o token
                             .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+
 
                             // BLOQUEAR O RESTO: Qualquer outra rota exige autenticação (Token válido)
                             .anyRequest().authenticated()
