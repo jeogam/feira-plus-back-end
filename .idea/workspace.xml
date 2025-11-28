@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/entity/Espaco.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/autenticacao/controller/AutenticacaoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/autenticacao/dto/LoginRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/autenticacao/dto/TokenResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/ApplicationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/jwt/JwtAuthorizarionFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/jwt/JwtTokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/Feira.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/Feira.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/FeiraEvento.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/FeiraEvento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/FeiraPermanente.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/FeiraPermanente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/Frequencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/enums/Frequencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +36,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "cauagomes06"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jeogam/feira-plus-back-end.git",
+    "accountId": "56c67acd-d881-40af-a60c-992c8c7b8f27"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -39,34 +59,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.Application.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/01sad/Documents/GitHub/feira-plus-back-end&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.Application.executor": "Debug",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/01sad/Documents/GitHub/feira-plus-back-end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="br.com.ifba.feiraplus" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.ifba.feiraplus.Application" />
+      <module name="feiraplus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.ifba.feiraplus.infrastructure.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="feiraplus" />
@@ -75,12 +110,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
       </set>
     </attachedChunks>
   </component>

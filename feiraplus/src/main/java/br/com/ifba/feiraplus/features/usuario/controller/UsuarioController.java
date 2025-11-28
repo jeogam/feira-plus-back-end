@@ -5,6 +5,7 @@ import br.com.ifba.feiraplus.features.usuario.exception.UsuarioNotFoundException
 import br.com.ifba.feiraplus.features.usuario.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -19,6 +20,7 @@ public class UsuarioController implements IUsuarioController{
 
   @Override
   @PostMapping
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Usuario> save(@RequestBody Usuario user) {
     Usuario newUser = service.save(user);
     return ResponseEntity
@@ -28,6 +30,7 @@ public class UsuarioController implements IUsuarioController{
 
   @Override
   @PutMapping("/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Usuario> update(
           @PathVariable Long id,
           @RequestBody Usuario user) {
@@ -38,6 +41,7 @@ public class UsuarioController implements IUsuarioController{
 
   @Override
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Usuario> delete(@PathVariable Long id) {
     service.delete(id);
     return ResponseEntity.noContent().build();
