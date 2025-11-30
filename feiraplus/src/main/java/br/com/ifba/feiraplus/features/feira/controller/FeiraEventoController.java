@@ -1,75 +1,85 @@
 package br.com.ifba.feiraplus.features.feira.controller;
 
+// IMPORTS ATUALIZADOS
+import br.com.ifba.feiraplus.features.feira.dto.request.FeiraEventoRequestDTO;
+import br.com.ifba.feiraplus.features.feira.dto.response.FeiraEventoResponseDTO;
 import br.com.ifba.feiraplus.features.feira.entity.FeiraEvento;
-import br.com.ifba.feiraplus.features.feira.service.IFeiraEventoService;
 import br.com.ifba.feiraplus.features.feira.exception.FeiraEventoNotFoundException;
-
-import java.net.URI;
-
+import br.com.ifba.feiraplus.features.feira.service.IFeiraEventoService;
+import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/feiras/eventos")
-public class FeiraEventoController implements IFeiraEventoController {
+public class FeiraEventoController {
 
-  @Autowired
-  private IFeiraEventoService service;
+    @Autowired
+    private IFeiraEventoService service;
 
-  @Override
-  @PostMapping
-  public ResponseEntity<FeiraEvento> save(@RequestBody FeiraEvento feira) {
-    FeiraEvento novaFeira = service.save(feira);
-    return ResponseEntity
-            .created(URI.create("/feiras/eventos/" + novaFeira.getId()))
-            .body(novaFeira);
-  }
+    @Autowired
+    private ModelMapper mapper;
 
-  @Override
-  @PutMapping("/{id}")
-  public ResponseEntity<FeiraEvento> update(
-          @PathVariable Long id,
-          @RequestBody FeiraEvento feira) {
+    @PostMapping
+    public ResponseEntity<FeiraEventoResponseDTO> save(@RequestBody @Valid FeiraEventoRequestDTO dto) {
+        FeiraEvento feira = mapper.map(dto, FeiraEvento.class);
+        FeiraEvento saved = service.save(feira);
 
-    FeiraEvento atualizada = service.update(id, feira);
-    return ResponseEntity.ok(atualizada);
-  }
+        FeiraEventoResponseDTO response = mapper.map(saved, FeiraEventoResponseDTO.class);
 
-  @Override
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    service.delete(id);
-    return ResponseEntity.noContent().build();
-  }
+        return ResponseEntity
+                .created(URI.create("/feiras/eventos/" + response.getId()))
+                .body(response);
+    }
 
-  @Override
-  @GetMapping("/{id}")
-  public ResponseEntity<FeiraEvento> findById(@PathVariable Long id) {
-    FeiraEvento feira = service.findById(id);
-    return ResponseEntity.ok(feira);
-  }
+    @PutMapping("/{id}")
+    public ResponseEntity<FeiraEventoResponseDTO> update(
+            @PathVariable Long id,
+            @RequestBody @Valid FeiraEventoRequestDTO dto) {
 
-  @Override
-  @GetMapping
-  public ResponseEntity<List<FeiraEvento>> findAll() {
-    List<FeiraEvento> feiras = service.findAll();
-    return ResponseEntity.ok(feiras);
-  }
+        FeiraEvento feiraDados = mapper.map(dto, FeiraEvento.class);
+        FeiraEvento atualizada = service.update(id, feiraDados);
 
-  @RestControllerAdvice
-  public class ExceptionHandlerConfig {
+        return ResponseEntity.ok(mapper.map(atualizada, FeiraEventoResponseDTO.class));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FeiraEventoResponseDTO> findById(@PathVariable Long id) {
+        FeiraEvento feira = service.findById(id);
+        return ResponseEntity.ok(mapper.map(feira, FeiraEventoResponseDTO.class));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FeiraEventoResponseDTO>> findAll() {
+        List<FeiraEvento> lista = service.findAll();
+
+        List<FeiraEventoResponseDTO> response = lista.stream()
+                .map(feira -> mapper.map(feira, FeiraEventoResponseDTO.class))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(response);
+    }
 
     @ExceptionHandler(FeiraEventoNotFoundException.class)
-    public ResponseEntity<String> notFound(Exception e) {
-      return ResponseEntity.status(404).body(e.getMessage());
+    public ResponseEntity<String> handleNotFound(FeiraEventoNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> badRequest(Exception e) {
-      return ResponseEntity.status(400).body(e.getMessage());
+    public ResponseEntity<String> handleBadRequest(IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
-  }
 }
