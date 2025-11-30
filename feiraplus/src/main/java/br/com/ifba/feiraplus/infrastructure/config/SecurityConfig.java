@@ -22,29 +22,21 @@
 
         private final JwtAuthorizarionFilter securityFilter;
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            return http
-                    // Desabilitamos o CSRF porque a nossa API é Stateless (não usa sessões/cookies)
-                    .csrf(csrf -> csrf.disable())
+            @Bean
+                public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                    return http
+                            .csrf(csrf -> csrf.disable())
+                            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                            .authorizeHttpRequests(authorize -> authorize
+                                    // Rotas públicas originais (Login e Cadastro de Usuário)
+                                    .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
+                                    .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
 
-                    // Definimos que a gestão de sessão é STATELESS (o servidor não guarda estado do login)
-                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-                    .authorizeHttpRequests(authorize -> authorize
-                            // PERMITIR LOGIN: O endpoint de login deve ser público para que se possa gerar o token
-                            .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
-
-
-                            // BLOQUEAR O RESTO: Qualquer outra rota exige autenticação (Token válido)
-                            .anyRequest().authenticated()
-                    )
-
-                    // ADICIONAR FILTRO: Colocamos o nosso filtro JWT antes do filtro padrão do Spring
-                    // para que o token seja validado antes de o Spring tentar qualquer outra coisa.
-                    .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-                    .build();
-        }
+                                    // BLOQUEAR O RESTO
+                                    .anyRequest().authenticated()
+                            )
+                            .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                            .build();
+                }
 
     }
