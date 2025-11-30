@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos">
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/controller/EspacoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/dto/request/EspacoRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/dto/response/EspacoResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/entity/Espaco.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/exception/EspacoNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/repository/EspacoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/service/EspacoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/service/IEspacoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/controller/FeiraEventoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/controller/FeiraEventoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/Feira.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/entity/Feira.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cauagomes06&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jeogam/feira-plus-back-end.git&quot;,
+    &quot;accountId&quot;: &quot;56c67acd-d881-40af-a60c-992c8c7b8f27&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="35ZIE8I2raE7ijI45FwD5YaFqMs" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.Application (1).executor": "Run",
+    "Spring Boot.Application.executor": "Debug",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/01sad/Documents/GitHub/feira-plus-back-end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="br.com.ifba.feiraplus" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Application (1)">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.ifba.feiraplus.Application" />
+      <module name="feiraplus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.ifba.feiraplus.infrastructure.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="feiraplus" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.ifba.feiraplus.feiraplus.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="feiraplus" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.ifba.feiraplus.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="" />
+      <created>1763311052886</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763311052886</updated>
+      <workItem from="1763311054581" duration="7154000" />
+      <workItem from="1763823576115" duration="36000" />
+      <workItem from="1763829994473" duration="82000" />
+      <workItem from="1763908851065" duration="608000" />
+      <workItem from="1763923908562" duration="2211000" />
+      <workItem from="1763987760279" duration="151000" />
+      <workItem from="1763990551950" duration="26000" />
+      <workItem from="1763993192452" duration="6000" />
+      <workItem from="1764268595629" duration="1546000" />
+      <workItem from="1764270166965" duration="685000" />
+    </task>
+    <task id="LOCAL-00001" summary="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos">
+      <option name="closed" value="true" />
+      <created>1764301646603</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764301646603</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos" />
+  </component>
+</project>
