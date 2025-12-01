@@ -1,6 +1,7 @@
 package br.com.ifba.feiraplus.features.usuario.service;
 
 import br.com.ifba.feiraplus.features.usuario.entity.Usuario;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface IUsuarioService {
   Usuario findById(Long id);
 
   List<Usuario> findAll();
+
+  UserDetails loadUserByEmail(String email);
 }

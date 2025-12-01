@@ -31,6 +31,6 @@ public class FeiraEventoRequestDTO {
     @FutureOrPresent(message = "A data deve ser futura ou presente")
     private LocalDate dataFim;
 
-    // TODO: Adicionar usuarioId quando a feature de usuário estiver pronta
-    // private Long usuarioId;
+
+    private Long usuarioId;
 }

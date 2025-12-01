@@ -1,11 +1,12 @@
 package br.com.ifba.feiraplus.infrastructure.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import java.io.Serializable;
 
 
-@Getter
+@Data
 @MappedSuperclass
 public class PersistenceEntity implements Serializable{
   @Id

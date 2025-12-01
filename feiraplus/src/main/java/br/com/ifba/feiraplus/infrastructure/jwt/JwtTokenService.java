@@ -119,13 +119,10 @@ public class JwtTokenService {
      * * @param claimsResolver Uma função que diz QUAL informação queremos pegar (ex: Subject, Expiration).
      */
     private <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = Jwts.parser() // Inicia o leitor de token
-                .setSigningKey(getSigningKey()) // Configura a chave para validar a assinatura
-                .build()
-                .parseClaimsJws(token) // <--- AQUI A MÁGICA ACONTECE:
-                // Se a assinatura for inválida ou o token alterado,
-                // este método lança uma Exception e para tudo.
-                .getBody(); // Pega o corpo do JSON (o payload)
+        final Claims claims = Jwts.parser() // Inicia o leitor (Na versão 0.11.5 ele já é o objeto pronto)
+                .setSigningKey(getSigningKey()) // Configura a chave
+                .parseClaimsJws(token) // Lê o token
+                .getBody();
 
         return claimsResolver.apply(claims);
     }

@@ -25,6 +25,5 @@ public class FeiraPermanenteRequestDTO {
     @NotNull(message = "A frequência é obrigatória")
     private Frequencia frequencia;
 
-    // TODO: Adicionar usuarioId
-    // private Long usuarioId;
+    private Long usuarioId;
 }
