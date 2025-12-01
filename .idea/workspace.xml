@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="CRIACAO DE PACOTE PARA EXPOSITOR E ORGANIZANDO A ENTIDADE&#10;&#10;SERVICES E CONTROLLER ADICIONADOS E REQUISIÇÕES FUNCIONANDO&#10;&#10;CRIACAO DE DTOS DE GET E DE POST&#10;&#10;CRIACAO DA CLASSE MAPPERCONFIG PARA INSTANCIA DE MAPPER(por algum motivo na minha maquina so rodou apos isso)&#10;&#10;Adicao de uma nova dependecia no pom.xml para funcionamento do bearer token">
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/exception/ExpositorNaoEncontrado.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/atribuicao/controller/AtribuicaoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/atribuicao/service/AtribuicaoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/entity/Categoria.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +20,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -120,7 +117,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
       </set>
     </attachedChunks>
   </component>
