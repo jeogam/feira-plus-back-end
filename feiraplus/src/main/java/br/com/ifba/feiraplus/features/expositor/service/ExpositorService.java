@@ -1,8 +1,10 @@
 package br.com.ifba.feiraplus.features.expositor.service;
 
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
+import br.com.ifba.feiraplus.features.expositor.exception.ExpositorNaoEncontrado;
 import br.com.ifba.feiraplus.features.expositor.repository.ExpositorRepository;
 import br.com.ifba.feiraplus.infrastructure.exception.BusinessException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -38,5 +40,22 @@ public class ExpositorService implements ExpositorIService{
         }catch (Exception e){
             throw new BusinessException("Nao retornado Lista de expositor");
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Expositor  findById(Long id) {
+        return repository.findById(id).orElseThrow(
+                () -> new ExpositorNaoEncontrado(String.format("Expositor com id %s  não encontrado", id)));
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+
+
+        Expositor expositor = this.findById(id);
+            repository.delete(expositor);
+
     }
 }

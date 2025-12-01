@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos">
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorGetDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorPostDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/enums/StatusExpositor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/repository/ExpositorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/MapperConfig.java" afterDir="false" />
+    <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="CRIACAO DE PACOTE PARA EXPOSITOR E ORGANIZANDO A ENTIDADE&#10;&#10;SERVICES E CONTROLLER ADICIONADOS E REQUISIÇÕES FUNCIONANDO&#10;&#10;CRIACAO DE DTOS DE GET E DE POST&#10;&#10;CRIACAO DA CLASSE MAPPERCONFIG PARA INSTANCIA DE MAPPER(por algum motivo na minha maquina so rodou apos isso)&#10;&#10;Adicao de uma nova dependecia no pom.xml para funcionamento do bearer token">
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/exception/ExpositorNaoEncontrado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/controller/FeiraEventoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/feira/controller/FeiraEventoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +24,7 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -154,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764301646603</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="CRIACAO DE PACOTE PARA EXPOSITOR E ORGANIZANDO A ENTIDADE&#10;&#10;SERVICES E CONTROLLER ADICIONADOS E REQUISIÇÕES FUNCIONANDO&#10;&#10;CRIACAO DE DTOS DE GET E DE POST&#10;&#10;CRIACAO DA CLASSE MAPPERCONFIG PARA INSTANCIA DE MAPPER(por algum motivo na minha maquina so rodou apos isso)&#10;&#10;Adicao de uma nova dependecia no pom.xml para funcionamento do bearer token">
+      <option name="closed" value="true" />
+      <created>1764558187713</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764558187713</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +177,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementacao de Autenticacao utilizando bearer token.&#10;&#10;Requisições no postman terao que utilizar um token gerado ao logar com um usuario.&#10;&#10;Para logar com um usuario,basta utilizar o postman e enviar json de  um email e senha de usuario e fazer a requisicao.O token gerado voce utiliza nas outras requisicoes que precisa de requisicao.&#10;&#10;Alteracoes feitas  em usuario Service e repository para suportar o formato de autenticacao&#10;&#10;Utiliza o PreAuthorize para definir perfis autorizados a utilizar endpoints especificos" />
+    <MESSAGE value="CRIACAO DE PACOTE PARA EXPOSITOR E ORGANIZANDO A ENTIDADE&#10;&#10;SERVICES E CONTROLLER ADICIONADOS E REQUISIÇÕES FUNCIONANDO&#10;&#10;CRIACAO DE DTOS DE GET E DE POST&#10;&#10;CRIACAO DA CLASSE MAPPERCONFIG PARA INSTANCIA DE MAPPER(por algum motivo na minha maquina so rodou apos isso)&#10;&#10;Adicao de uma nova dependecia no pom.xml para funcionamento do bearer token" />
+    <option name="LAST_COMMIT_MESSAGE" value="CRIACAO DE PACOTE PARA EXPOSITOR E ORGANIZANDO A ENTIDADE&#10;&#10;SERVICES E CONTROLLER ADICIONADOS E REQUISIÇÕES FUNCIONANDO&#10;&#10;CRIACAO DE DTOS DE GET E DE POST&#10;&#10;CRIACAO DA CLASSE MAPPERCONFIG PARA INSTANCIA DE MAPPER(por algum motivo na minha maquina so rodou apos isso)&#10;&#10;Adicao de uma nova dependecia no pom.xml para funcionamento do bearer token" />
   </component>
 </project>

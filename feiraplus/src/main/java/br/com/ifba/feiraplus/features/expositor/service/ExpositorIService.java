@@ -9,4 +9,8 @@ public interface ExpositorIService {
     public List<Expositor> findAll();
 
     public Expositor save(Expositor expositor);
+
+    public Expositor findById(Long id);
+
+    public void delete(Long id);
 }

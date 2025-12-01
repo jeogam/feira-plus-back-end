@@ -7,7 +7,6 @@ import lombok.*;
 
 @Getter
 @Setter
-
 @NoArgsConstructor
 @Entity
 @Table(name = "expositores")
