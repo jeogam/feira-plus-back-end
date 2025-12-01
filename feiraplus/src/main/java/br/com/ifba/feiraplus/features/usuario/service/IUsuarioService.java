@@ -18,4 +18,6 @@ public interface IUsuarioService {
   List<Usuario> findAll();
 
   UserDetails loadUserByEmail(String email);
+
+    Usuario buscarPorUsername(String username);
 }
