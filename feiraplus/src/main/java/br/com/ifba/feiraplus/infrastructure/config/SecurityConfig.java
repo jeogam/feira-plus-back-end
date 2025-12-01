@@ -32,6 +32,8 @@
                                     .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
                                     .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
 
+                                    .requestMatchers("/feiras/**").permitAll()
+
                                     // BLOQUEAR O RESTO
                                     .anyRequest().authenticated()
                             )
