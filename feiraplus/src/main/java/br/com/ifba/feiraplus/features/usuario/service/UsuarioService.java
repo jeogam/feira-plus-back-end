@@ -109,6 +109,12 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
     }
 
     @Override
+    public Usuario buscarPorUsername(String username) {
+        return repository.findByEmail(username).orElseThrow(() ->
+                new UsernameNotFoundException("usuario com este email nao encontrado"+username));
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return loadUserByEmail(username);
     }

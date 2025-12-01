@@ -6,6 +6,8 @@ import br.com.ifba.feiraplus.features.usuario.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -60,7 +62,25 @@ public class UsuarioController implements IUsuarioController{
     return ResponseEntity.ok(users);
   }
 
-  @RestControllerAdvice
+    @Override
+    @GetMapping("/me")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Usuario> getUsuarioLogado(@AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails == null) return ResponseEntity.status(401).build();
+
+        Usuario usuario = getUsuarioEntity(userDetails);
+        return ResponseEntity.ok(usuario);
+    }
+
+    // --- MÉTODOS AUXILIARES ---
+
+    private Usuario getUsuarioEntity(UserDetails userDetails) {
+        return service.buscarPorUsername(userDetails.getUsername());
+    }
+
+
+
+    @RestControllerAdvice
   public class ExceptionHandlerConfig{
 
     @ExceptionHandler (UsuarioNotFoundException.class)
