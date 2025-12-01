@@ -9,6 +9,7 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    // Método para buscar usuário por email, retornando um Optional para evitar NullPointerException
     Optional<Usuario> findByEmail(String email);
+
+    boolean existsByEmail(String email);
 }
