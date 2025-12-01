@@ -7,6 +7,7 @@ import br.com.ifba.feiraplus.features.feira.entity.FeiraEvento;
 import br.com.ifba.feiraplus.features.feira.exception.FeiraEventoNotFoundException;
 import br.com.ifba.feiraplus.features.feira.service.IFeiraEventoService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +18,16 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/feiras/eventos")
 public class FeiraEventoController {
 
-    @Autowired
-    private IFeiraEventoService service;
 
-    @Autowired
-    private ModelMapper mapper;
+    private final IFeiraEventoService service;
+
+
+    private final ModelMapper mapper;
 
     @PostMapping
     public ResponseEntity<FeiraEventoResponseDTO> save(@RequestBody @Valid FeiraEventoRequestDTO dto) {
