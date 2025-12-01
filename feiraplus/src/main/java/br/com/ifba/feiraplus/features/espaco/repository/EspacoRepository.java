@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EspacoRepository extends JpaRepository<Espaco, Long> {
+    long countByFeiraId(Long feiraId);
 }

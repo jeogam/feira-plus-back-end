@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86e87ec8-79a3-4404-bae6-acc87347b5ae" name="Changes" comment="CRIACAO DE PACOTE PARA EXPOSITOR E ORGANIZANDO A ENTIDADE&#10;&#10;SERVICES E CONTROLLER ADICIONADOS E REQUISIÇÕES FUNCIONANDO&#10;&#10;CRIACAO DE DTOS DE GET E DE POST&#10;&#10;CRIACAO DA CLASSE MAPPERCONFIG PARA INSTANCIA DE MAPPER(por algum motivo na minha maquina so rodou apos isso)&#10;&#10;Adicao de uma nova dependecia no pom.xml para funcionamento do bearer token">
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/atribuicao/controller/AtribuicaoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/atribuicao/service/AtribuicaoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/entity/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/relatorio/dto/response/RelatorioOcupacaoResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/relatorio/service/afafsg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/atribuicao/repository/AtribuicaoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/atribuicao/repository/AtribuicaoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/repository/EspacoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/espaco/repository/EspacoRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Exception" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
