@@ -8,6 +8,12 @@ import lombok.Setter;
 @Setter
 public class ExpositorGetDto {
 
+    private Long id; // Importante para o React saber quem é quem (key prop)
     private String nome;
+    private String documentacao;
     private StatusExpositor status;
+
+    // Informações da Categoria para exibição
+    private Long categoriaId;
+    private String categoriaNome;
 }

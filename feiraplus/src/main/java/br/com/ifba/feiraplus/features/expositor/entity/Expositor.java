@@ -1,5 +1,6 @@
 package br.com.ifba.feiraplus.features.expositor.entity;
 
+import br.com.ifba.feiraplus.features.categoria.entity.Categoria;
 import br.com.ifba.feiraplus.features.expositor.enums.StatusExpositor;
 import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.*;
@@ -22,4 +23,8 @@ public class Expositor extends PersistenceEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusExpositor status;
+    @ManyToOne
+    // Lê-se: "Muitos expositores pertencem a Uma categoria"
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 }

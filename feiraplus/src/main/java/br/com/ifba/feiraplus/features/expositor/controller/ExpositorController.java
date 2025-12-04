@@ -6,86 +6,107 @@ import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.exception.ExpositorNaoEncontrado;
 import br.com.ifba.feiraplus.features.expositor.service.ExpositorIService;
 import br.com.ifba.feiraplus.infrastructure.mapper.ObjectMapperUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/expositores")
-
 public class ExpositorController {
 
     private final ObjectMapperUtil objectMapperUtil;
     private final ExpositorIService expositorIService;
 
+    // --- MÉTODO AUXILIAR---
+    // Centraliza a conversão para não esquecer a categoria em nenhum lugar
+    private ExpositorGetDto converterParaDto(Expositor expositor) {
+        // 1. Converte os dados básicos (nome, status, doc)
+        ExpositorGetDto dto = objectMapperUtil.map(expositor, ExpositorGetDto.class);
+
+        // 2. Preenche manualmente os dados da Categoria
+        if (expositor.getCategoria() != null) {
+            dto.setCategoriaId(expositor.getCategoria().getId());
+            dto.setCategoriaNome(expositor.getCategoria().getNome());
+        }
+
+        return dto;
+    }
+
     // --- 1. POST (CRIAR) ---
-    // Rota: POST /expositores
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
-    public ResponseEntity<ExpositorGetDto> save(@RequestBody ExpositorPostDto expositorDto) {
-
-        Expositor expositor = objectMapperUtil.map(expositorDto, Expositor.class);
-        Expositor expositorSalvo = expositorIService.save(expositor);
-
-        return ResponseEntity.status(HttpStatus.CREATED).
-                body(objectMapperUtil.map(expositorSalvo, ExpositorGetDto.class));
+    @PostMapping("/register")
+    public ResponseEntity<ExpositorGetDto> save(@RequestBody @Valid ExpositorPostDto expositorDto) {
+        Expositor expositorSalvo = expositorIService.save(expositorDto);
+        // Usa o método auxiliar
+        return ResponseEntity.status(HttpStatus.CREATED).body(converterParaDto(expositorSalvo));
     }
 
     // --- 2. GET (BUSCAR TODOS) ---
-    // Rota: GET /expositores
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping
-    public ResponseEntity< List <ExpositorGetDto>> findAll() {
-
+    @GetMapping("/buscar-todos")
+    public ResponseEntity<List<ExpositorGetDto>> findAll() {
         List<Expositor> expositores = expositorIService.findAll();
 
-        return ResponseEntity.ok()
-                .body(objectMapperUtil.mapAll(expositores, ExpositorGetDto.class));
+        // Converte a lista usando Stream e o nosso método auxiliar
+        List<ExpositorGetDto> dtos = expositores.stream()
+                .map(this::converterParaDto)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dtos);
     }
 
     // --- 3. GET (BUSCAR POR ID) ---
-    // Rota: GET /expositores/{id}
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<ExpositorGetDto> buscarPorId( @PathVariable Long id){
-
+    public ResponseEntity<ExpositorGetDto> buscarPorId(@PathVariable Long id) {
         Expositor expositor = expositorIService.findById(id);
-
-        return ResponseEntity.status(HttpStatus.OK).body(objectMapperUtil.map(expositor, ExpositorGetDto.class));
+        // Usa o método auxiliar
+        return ResponseEntity.status(HttpStatus.OK).body(converterParaDto(expositor));
     }
 
     // --- 4. PUT (ATUALIZAR) ---
-    // Rota: PUT /expositores/{id}
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
-    public ResponseEntity<ExpositorGetDto> update(@PathVariable Long id, @RequestBody ExpositorPostDto expositorDto) {
-
-        Expositor expositor = objectMapperUtil.map(expositorDto, Expositor.class);
-        expositor.setId(id); // Define o ID para o Service saber qual atualizar
-
-        Expositor expositorAtualizado = expositorIService.save(expositor);
-
-        return ResponseEntity.ok(objectMapperUtil.map(expositorAtualizado, ExpositorGetDto.class));
+    @PutMapping("update/{id}")
+    public ResponseEntity<ExpositorGetDto> update(@PathVariable Long id,
+                                                  @RequestBody @Valid ExpositorPostDto expositorDto) {
+        Expositor expositorAtualizado = expositorIService.update(id, expositorDto);
+        // Agora ficou limpo, pois a lógica foi para o método converterParaDto
+        return ResponseEntity.ok(converterParaDto(expositorAtualizado));
     }
 
     // --- 5. DELETE (DELETAR) ---
-    // Rota: DELETE /expositores/{id}
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete( @PathVariable Long id ) {
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         expositorIService.delete(id);
-
-        // Retorno 204 No Content
         return ResponseEntity.noContent().build();
     }
 
-    // --- 6. EXCEPTION HANDLER ---
-    // Mapeia a exceção de "Não Encontrado" para o status 404
+    // --- BUSCAR POR CATEGORIA PAGINADO ---
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/buscar-por-categoria")
+    public ResponseEntity<Page<ExpositorGetDto>> buscarPorNomeCategoria(
+            @RequestParam String nomeCategoria,
+            Pageable pageable) {
+
+        Page<Expositor> expositoresPage = expositorIService.buscarPorCategoria(nomeCategoria, pageable);
+
+        // O map do Page aceita nosso método auxiliar também!
+        Page<ExpositorGetDto> dtoPage = expositoresPage.map(this::converterParaDto);
+
+        return ResponseEntity.ok(dtoPage);
+    }
+
+    // --- EXCEPTION HANDLER ---
     @ExceptionHandler(ExpositorNaoEncontrado.class)
     public ResponseEntity<String> handleNotFound(ExpositorNaoEncontrado e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
