@@ -8,6 +8,10 @@ import lombok.Setter;
 @Setter
 public class ExpositorGetDto {
 
+    private Long id;
     private String nome;
+    private String email;
+    private String cpfCnpj;
+    private String telefone;
     private StatusExpositor status;
 }

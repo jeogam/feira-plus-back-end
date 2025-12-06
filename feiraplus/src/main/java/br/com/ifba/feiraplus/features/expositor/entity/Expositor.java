@@ -1,25 +1,32 @@
 package br.com.ifba.feiraplus.features.expositor.entity;
 
 import br.com.ifba.feiraplus.features.expositor.enums.StatusExpositor;
-import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
-@Table(name = "expositores")
-public class Expositor extends PersistenceEntity {
+@Table(name = "expositor")
+public class Expositor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "cpf_cnpj", nullable = false, unique = true)
+    private String cpfCnpj;
+
     @Column(nullable = false)
-    private String documentacao; // CPF ou CNPJ
+    private String telefone;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private StatusExpositor status;
 }

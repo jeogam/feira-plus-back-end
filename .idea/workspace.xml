@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3404113f-6fdd-48a9-b848-ad0ccbd39574" name="Changes" comment="ExpositorController Adaptado pra tela" />
+    <list default="true" id="3404113f-6fdd-48a9-b848-ad0ccbd39574" name="Changes" comment="ExpositorController Adaptado pra tela">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorGetDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorGetDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorPostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorPostDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/enums/StatusExpositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/enums/StatusExpositor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

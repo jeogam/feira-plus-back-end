@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface ExpositorIService {
 
-    public List<Expositor> findAll();
-
-    public Expositor save(Expositor expositor);
-
-    public Expositor findById(Long id);
-
-    public void delete(Long id);
+    Expositor save(Expositor expositor);      // Create
+    Expositor update(Long id, Expositor expositor); // Update
+    List<Expositor> findAll();
+    Expositor findById(Long id);
+    void delete(Long id);
 }

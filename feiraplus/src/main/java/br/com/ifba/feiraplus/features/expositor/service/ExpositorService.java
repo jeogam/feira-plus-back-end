@@ -3,59 +3,53 @@ package br.com.ifba.feiraplus.features.expositor.service;
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.exception.ExpositorNaoEncontrado;
 import br.com.ifba.feiraplus.features.expositor.repository.ExpositorRepository;
-import br.com.ifba.feiraplus.infrastructure.exception.BusinessException;
-import jakarta.persistence.EntityNotFoundException;
+import br.com.ifba.feiraplus.features.expositor.service.ExpositorIService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
-public class ExpositorService implements ExpositorIService{
+public class ExpositorService implements ExpositorIService {
 
     private final ExpositorRepository repository;
 
-
-    @Transactional
+    // CREATE
+    @Override
     public Expositor save(Expositor expositor) {
-
-         try{
-             return repository.save(expositor);
-         }catch(Exception e){
-             log.error("Erro ao tentar salvar o expositor: {}", expositor, e);
-             throw new BusinessException("Nao foi possivel salvar expositor");
-         }
+        expositor.setId(null); // Garantir que é criação
+        return repository.save(expositor);
     }
 
+    // UPDATE
+    @Override
+    public Expositor update(Long id, Expositor novosDados) {
+        Expositor existente = repository.findById(id)
+                .orElseThrow(() -> new ExpositorNaoEncontrado("Expositor não encontrado!"));
 
-    @Transactional(readOnly = true)
+        existente.setNome(novosDados.getNome());
+        existente.setEmail(novosDados.getEmail());
+        existente.setTelefone(novosDados.getTelefone());
+        // Adicione outros campos caso existam
+
+        return repository.save(existente);
+    }
+
+    @Override
     public List<Expositor> findAll() {
-
-        try{
-            return repository.findAll();
-        }catch (Exception e){
-            throw new BusinessException("Nao retornado Lista de expositor");
-        }
+        return repository.findAll();
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Expositor  findById(Long id) {
-        return repository.findById(id).orElseThrow(
-                () -> new ExpositorNaoEncontrado(String.format("Expositor com id %s  não encontrado", id)));
+    public Expositor findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ExpositorNaoEncontrado("Expositor não encontrado!"));
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
-
-
-        Expositor expositor = this.findById(id);
-            repository.delete(expositor);
-
+        Expositor existente = findById(id);
+        repository.delete(existente);
     }
 }

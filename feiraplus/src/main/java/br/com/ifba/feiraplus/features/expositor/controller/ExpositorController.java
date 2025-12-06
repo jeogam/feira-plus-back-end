@@ -9,7 +9,6 @@ import br.com.ifba.feiraplus.infrastructure.mapper.ObjectMapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,75 +16,49 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/expositores")
-
 public class ExpositorController {
 
-    private final ObjectMapperUtil objectMapperUtil;
-    private final ExpositorIService expositorIService;
+    private final ObjectMapperUtil mapper;
+    private final ExpositorIService service;
 
-    // --- 1. POST (CRIAR) ---
-    // Rota: POST /expositores
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<ExpositorGetDto> save(@RequestBody ExpositorPostDto expositorDto) {
+    public ResponseEntity<ExpositorGetDto> save(@RequestBody ExpositorPostDto dto) {
+        Expositor expositor = mapper.map(dto, Expositor.class);
+        Expositor saved = service.save(expositor);
 
-        Expositor expositor = objectMapperUtil.map(expositorDto, Expositor.class);
-        Expositor expositorSalvo = expositorIService.save(expositor);
-
-        return ResponseEntity.status(HttpStatus.CREATED).
-                body(objectMapperUtil.map(expositorSalvo, ExpositorGetDto.class));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(mapper.map(saved, ExpositorGetDto.class));
     }
 
-    // --- 2. GET (BUSCAR TODOS) ---
-    // Rota: GET /expositores
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
-    public ResponseEntity< List <ExpositorGetDto>> findAll() {
-
-        List<Expositor> expositores = expositorIService.findAll();
-
-        return ResponseEntity.ok()
-                .body(objectMapperUtil.mapAll(expositores, ExpositorGetDto.class));
+    public ResponseEntity<List<ExpositorGetDto>> findAll() {
+        List<Expositor> list = service.findAll();
+        return ResponseEntity.ok(mapper.mapAll(list, ExpositorGetDto.class));
     }
 
-    // --- 3. GET (BUSCAR POR ID) ---
-    // Rota: GET /expositores/{id}
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<ExpositorGetDto> buscarPorId( @PathVariable Long id){
-
-        Expositor expositor = expositorIService.findById(id);
-
-        return ResponseEntity.status(HttpStatus.OK).body(objectMapperUtil.map(expositor, ExpositorGetDto.class));
+    public ResponseEntity<ExpositorGetDto> findById(@PathVariable Long id) {
+        Expositor expositor = service.findById(id);
+        return ResponseEntity.ok(mapper.map(expositor, ExpositorGetDto.class));
     }
 
-    // --- 4. PUT (ATUALIZAR) ---
-    // Rota: PUT /expositores/{id}
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<ExpositorGetDto> update(@PathVariable Long id, @RequestBody ExpositorPostDto expositorDto) {
+    public ResponseEntity<ExpositorGetDto> update(
+            @PathVariable Long id,
+            @RequestBody ExpositorPostDto dto
+    ) {
+        Expositor novosDados = mapper.map(dto, Expositor.class);
+        Expositor updated = service.update(id, novosDados);
 
-        Expositor expositor = objectMapperUtil.map(expositorDto, Expositor.class);
-        expositor.setId(id); // Define o ID para o Service saber qual atualizar
-
-        Expositor expositorAtualizado = expositorIService.save(expositor);
-
-        return ResponseEntity.ok(objectMapperUtil.map(expositorAtualizado, ExpositorGetDto.class));
+        return ResponseEntity.ok(mapper.map(updated, ExpositorGetDto.class));
     }
 
-    // --- 5. DELETE (DELETAR) ---
-    // Rota: DELETE /expositores/{id}
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete( @PathVariable Long id ) {
-        expositorIService.delete(id);
-
-        // Retorno 204 No Content
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    // --- 6. EXCEPTION HANDLER ---
-    // Mapeia a exceção de "Não Encontrado" para o status 404
     @ExceptionHandler(ExpositorNaoEncontrado.class)
     public ResponseEntity<String> handleNotFound(ExpositorNaoEncontrado e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

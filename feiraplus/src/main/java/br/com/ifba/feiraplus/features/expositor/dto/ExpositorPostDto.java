@@ -9,6 +9,8 @@ import lombok.Setter;
 public class ExpositorPostDto {
 
     private String nome;
-    private String documentacao;
+    private String email;
+    private String cpfCnpj;
+    private String telefone;
     private StatusExpositor status;
 }
