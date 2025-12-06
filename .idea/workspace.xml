@@ -4,30 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3404113f-6fdd-48a9-b848-ad0ccbd39574" name="Changes" comment="ExpositorController Adaptado pra tela">
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UpdateSenhaDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UsuarioGetDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UsuarioPostDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UsuarioUpdateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/controller/CategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/controller/CategoriaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/dto/request/CategoriaRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/dto/request/CategoriaRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/entity/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/entity/Categoria.java" afterDir="false" />
+    <list default="true" id="3404113f-6fdd-48a9-b848-ad0ccbd39574" name="Changes" comment="Corrigindo erro 400 expositores">
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorGetDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorGetDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorPostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorPostDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/repository/ExpositorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/repository/ExpositorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/IUsuarioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/exception/UsuarioNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/exception/UsuarioNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/exception/ApiExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/exception/ApiExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +85,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.Application.executor": "Run",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/01sad/Documents/GitHub/feira-plus-back-end",
@@ -183,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765044808603</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Corrigindo erro 400 expositores">
+      <option name="closed" value="true" />
+      <created>1765046039591</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765046039591</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +182,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ExpositorController Adaptado pra tela" />
     <MESSAGE value="Commit expositor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit expositor" />
+    <MESSAGE value="Corrigindo erro 400 expositores" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrigindo erro 400 expositores" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

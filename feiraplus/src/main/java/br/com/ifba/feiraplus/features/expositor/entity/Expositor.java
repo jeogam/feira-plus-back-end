@@ -30,8 +30,8 @@ public class Expositor {
 
     @Enumerated(EnumType.STRING)
     private StatusExpositor status;
+
     @ManyToOne
-    // Lê-se: "Muitos expositores pertencem a Uma categoria"
     @JoinColumn(name = "categoria_id", nullable = false)
     private Categoria categoria;
 }

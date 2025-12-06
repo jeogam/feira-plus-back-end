@@ -42,7 +42,7 @@ public class ExpositorController {
     }
 
     // --- 1. POST (CRIAR) ---
-    @PreAuthorize("hasRole('ADMIN')")
+
     @PostMapping("/register")
     public ResponseEntity<ExpositorGetDto> save(@RequestBody @Valid ExpositorPostDto expositorDto) {
         Expositor expositorSalvo = expositorIService.save(expositorDto);
@@ -51,7 +51,7 @@ public class ExpositorController {
     }
 
     // --- 2. GET (BUSCAR TODOS) ---
-    @PreAuthorize("hasRole('ADMIN')")
+
     @GetMapping("/buscar-todos")
     public ResponseEntity<List<ExpositorGetDto>> findAll() {
         List<Expositor> expositores = expositorIService.findAll();
@@ -65,7 +65,7 @@ public class ExpositorController {
     }
 
     // --- 3. GET (BUSCAR POR ID) ---
-    @PreAuthorize("hasRole('ADMIN')")
+
     @GetMapping("/{id}")
     public ResponseEntity<ExpositorGetDto> buscarPorId(@PathVariable Long id) {
         Expositor expositor = expositorIService.findById(id);
@@ -74,7 +74,7 @@ public class ExpositorController {
     }
 
     // --- 4. PUT (ATUALIZAR) ---
-    @PreAuthorize("hasRole('ADMIN')")
+
     @PutMapping("update/{id}")
     public ResponseEntity<ExpositorGetDto> update(@PathVariable Long id,
                                                   @RequestBody @Valid ExpositorPostDto expositorDto) {
@@ -84,7 +84,7 @@ public class ExpositorController {
     }
 
     // --- 5. DELETE (DELETAR) ---
-    @PreAuthorize("hasRole('ADMIN')")
+
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         expositorIService.delete(id);
@@ -92,7 +92,7 @@ public class ExpositorController {
     }
 
     // --- BUSCAR POR CATEGORIA PAGINADO ---
-    @PreAuthorize("hasRole('ADMIN')")
+
     @GetMapping("/buscar-por-categoria")
     public ResponseEntity<Page<ExpositorGetDto>> buscarPorNomeCategoria(
             @RequestParam String nomeCategoria,
