@@ -6,59 +6,107 @@ import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.exception.ExpositorNaoEncontrado;
 import br.com.ifba.feiraplus.features.expositor.service.ExpositorIService;
 import br.com.ifba.feiraplus.infrastructure.mapper.ObjectMapperUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/expositores")
 public class ExpositorController {
 
-    private final ObjectMapperUtil mapper;
-    private final ExpositorIService service;
+    private final ObjectMapperUtil objectMapperUtil;
+    private final ExpositorIService expositorIService;
 
-    @PostMapping
-    public ResponseEntity<ExpositorGetDto> save(@RequestBody ExpositorPostDto dto) {
-        Expositor expositor = mapper.map(dto, Expositor.class);
-        Expositor saved = service.save(expositor);
+    // --- MÉTODO AUXILIAR---
+    // Centraliza a conversão para não esquecer a categoria em nenhum lugar
+    private ExpositorGetDto converterParaDto(Expositor expositor) {
+        // 1. Converte os dados básicos (nome, status, doc)
+        ExpositorGetDto dto = objectMapperUtil.map(expositor, ExpositorGetDto.class);
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(mapper.map(saved, ExpositorGetDto.class));
+        // 2. Preenche manualmente os dados da Categoria
+        if (expositor.getCategoria() != null) {
+            dto.setCategoriaId(expositor.getCategoria().getId());
+            dto.setCategoriaNome(expositor.getCategoria().getNome());
+        }
+
+        return dto;
     }
 
-    @GetMapping
+    // --- 1. POST (CRIAR) ---
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/register")
+    public ResponseEntity<ExpositorGetDto> save(@RequestBody @Valid ExpositorPostDto expositorDto) {
+        Expositor expositorSalvo = expositorIService.save(expositorDto);
+        // Usa o método auxiliar
+        return ResponseEntity.status(HttpStatus.CREATED).body(converterParaDto(expositorSalvo));
+    }
+
+    // --- 2. GET (BUSCAR TODOS) ---
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/buscar-todos")
     public ResponseEntity<List<ExpositorGetDto>> findAll() {
-        List<Expositor> list = service.findAll();
-        return ResponseEntity.ok(mapper.mapAll(list, ExpositorGetDto.class));
+        List<Expositor> expositores = expositorIService.findAll();
+
+        // Converte a lista usando Stream e o nosso método auxiliar
+        List<ExpositorGetDto> dtos = expositores.stream()
+                .map(this::converterParaDto)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dtos);
     }
 
+    // --- 3. GET (BUSCAR POR ID) ---
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<ExpositorGetDto> findById(@PathVariable Long id) {
-        Expositor expositor = service.findById(id);
-        return ResponseEntity.ok(mapper.map(expositor, ExpositorGetDto.class));
+    public ResponseEntity<ExpositorGetDto> buscarPorId(@PathVariable Long id) {
+        Expositor expositor = expositorIService.findById(id);
+        // Usa o método auxiliar
+        return ResponseEntity.status(HttpStatus.OK).body(converterParaDto(expositor));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ExpositorGetDto> update(
-            @PathVariable Long id,
-            @RequestBody ExpositorPostDto dto
-    ) {
-        Expositor novosDados = mapper.map(dto, Expositor.class);
-        Expositor updated = service.update(id, novosDados);
-
-        return ResponseEntity.ok(mapper.map(updated, ExpositorGetDto.class));
+    // --- 4. PUT (ATUALIZAR) ---
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("update/{id}")
+    public ResponseEntity<ExpositorGetDto> update(@PathVariable Long id,
+                                                  @RequestBody @Valid ExpositorPostDto expositorDto) {
+        Expositor expositorAtualizado = expositorIService.update(id, expositorDto);
+        // Agora ficou limpo, pois a lógica foi para o método converterParaDto
+        return ResponseEntity.ok(converterParaDto(expositorAtualizado));
     }
 
-    @DeleteMapping("/{id}")
+    // --- 5. DELETE (DELETAR) ---
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+        expositorIService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
+    // --- BUSCAR POR CATEGORIA PAGINADO ---
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/buscar-por-categoria")
+    public ResponseEntity<Page<ExpositorGetDto>> buscarPorNomeCategoria(
+            @RequestParam String nomeCategoria,
+            Pageable pageable) {
+
+        Page<Expositor> expositoresPage = expositorIService.buscarPorCategoria(nomeCategoria, pageable);
+
+        // O map do Page aceita nosso método auxiliar também!
+        Page<ExpositorGetDto> dtoPage = expositoresPage.map(this::converterParaDto);
+
+        return ResponseEntity.ok(dtoPage);
+    }
+
+    // --- EXCEPTION HANDLER ---
     @ExceptionHandler(ExpositorNaoEncontrado.class)
     public ResponseEntity<String> handleNotFound(ExpositorNaoEncontrado e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

@@ -19,7 +19,6 @@ import lombok.Setter;
 public class Categoria extends PersistenceEntity {
 
     @Column(name = "nome", nullable = false, unique = true)
-    @NotBlank(message = "O nome da categoria é obrigatório")
     private String nome;
 
 }

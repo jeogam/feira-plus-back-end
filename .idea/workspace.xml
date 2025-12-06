@@ -5,14 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3404113f-6fdd-48a9-b848-ad0ccbd39574" name="Changes" comment="ExpositorController Adaptado pra tela">
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UpdateSenhaDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UsuarioGetDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UsuarioPostDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/dto/UsuarioUpdateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/controller/CategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/controller/CategoriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/dto/request/CategoriaRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/dto/request/CategoriaRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/entity/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/categoria/entity/Categoria.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/controller/ExpositorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorGetDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorGetDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorPostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/dto/ExpositorPostDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/entity/Expositor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/enums/StatusExpositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/enums/StatusExpositor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/repository/ExpositorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/repository/ExpositorRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorIService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/expositor/service/ExpositorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/IUsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/exception/UsuarioNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/exception/UsuarioNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/IUsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/features/usuario/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/exception/ApiExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/feiraplus/src/main/java/br/com/ifba/feiraplus/infrastructure/exception/ApiExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +57,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/jeogam/feira-plus-back-end&quot;,
-    &quot;accountId&quot;: &quot;0ea4a128-9504-453d-8ebe-6ee9db2e3b57&quot;
+    &quot;url&quot;: &quot;https://github.com/jeogam/feira-plus-back-end.git&quot;,
+    &quot;accountId&quot;: &quot;56c67acd-d881-40af-a60c-992c8c7b8f27&quot;
   }
 }</component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -72,38 +87,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.feiraplus [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.feiraplus [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.feiraplus [install,--non-recursive].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.feiraplus [install].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.Application.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/01sad/Documents/GitHub/feira-plus-back-end&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.Application.executor": "Run",
+    "Maven.feiraplus [clean].executor": "Run",
+    "Maven.feiraplus [compile].executor": "Run",
+    "Maven.feiraplus [install,--non-recursive].executor": "Run",
+    "Maven.feiraplus [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.Application.executor": "Run",
+    "git-widget-placeholder": "Merging main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/01sad/Documents/GitHub/feira-plus-back-end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.com.ifba.feiraplus.Application" />
@@ -135,7 +150,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
       </set>
     </attachedChunks>
   </component>
@@ -160,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764777566065</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit expositor">
+      <option name="closed" value="true" />
+      <created>1765044808603</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1765044808603</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +191,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ExpositorController Adaptado pra tela" />
-    <option name="LAST_COMMIT_MESSAGE" value="ExpositorController Adaptado pra tela" />
+    <MESSAGE value="Commit expositor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit expositor" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

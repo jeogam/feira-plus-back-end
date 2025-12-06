@@ -1,5 +1,6 @@
 package br.com.ifba.feiraplus.infrastructure.exception;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,5 +23,21 @@ public class ApiExceptionHandler {
         body.put("status", HttpStatus.BAD_REQUEST.value());
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    // ERRO 1: Categoria tem expositores vinculados (Erro de FK)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<String> handleIntegrityViolation(DataIntegrityViolationException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT) // Retorna 409 Conflict
+                .body("Não é possível excluir esta categoria pois ela possui expositores vinculados.");
+    }
+
+    // ERRO 2: ID não encontrado ou erro de validação
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleBadRequest(Exception e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }
