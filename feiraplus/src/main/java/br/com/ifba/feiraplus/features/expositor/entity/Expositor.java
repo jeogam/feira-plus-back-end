@@ -2,6 +2,7 @@ package br.com.ifba.feiraplus.features.expositor.entity;
 
 import br.com.ifba.feiraplus.features.categoria.entity.Categoria;
 import br.com.ifba.feiraplus.features.expositor.enums.StatusExpositor;
+import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,23 +11,13 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "expositor")
-public class Expositor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Expositor extends PersistenceEntity {
 
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
     @Column(name = "documentacao", nullable = false, unique = true)
     private String documentacao;
-
-    @Column(nullable = false)
-    private String telefone;
 
     @Enumerated(EnumType.STRING)
     private StatusExpositor status;
