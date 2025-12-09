@@ -20,23 +20,29 @@ public class SecurityConfig {
 
     private final JwtAuthorizarionFilter securityFilter;
 
+    // 1. 🔥 CORREÇÃO: ADICIONAR DE VOLTA O @Bean
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                // HABILITA CORS ANTES DE QUALQUER OUTRA COISA
+                // HABILITA CORS
                 .cors(cors -> {})
 
-                // Sem sessões
+                // Sem sessões e CSRF desabilitado
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .authorizeHttpRequests(authorize -> authorize
+                        // Permite OPTIONS para CORS
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // Rotas públicas
                         .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuarios/register").permitAll()
+                        // Rotas protegidas
                         .anyRequest().authenticated()
                 )
 
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                // 2. 🔥 CORREÇÃO: ADICIONAR DE VOLTA O .build()
                 .build();
     }
 }

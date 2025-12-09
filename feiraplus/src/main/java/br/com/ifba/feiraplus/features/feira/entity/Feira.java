@@ -1,13 +1,12 @@
 package br.com.ifba.feiraplus.features.feira.entity;
 
-import br.com.ifba.feiraplus.features.espaco.entity.Espaco; // Assumindo que você criará essa classe
-import br.com.ifba.feiraplus.features.usuario.entity.Usuario; // Assumindo que você criará essa classe
+import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
+import br.com.ifba.feiraplus.features.usuario.entity.Usuario;
 import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,29 +18,41 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public abstract class Feira extends PersistenceEntity {
 
+    // Nome da Feira (Obrigatório)
     @Column(nullable = false)
     private String nome;
 
+    // Quantidade total de espaços disponíveis
+    @Column(nullable = false)
+    private int espacos;
+
+    // Localização da Feira (Obrigatório)
     @Column(nullable = false)
     private String local;
 
+    // Hora de Abertura
     @Column(name = "hora_abertura")
     private LocalTime horaAbertura;
 
+    // Hora de Fechamento
     @Column(name = "hora_fechamento")
     private LocalTime horaFechamento;
 
-    // --- RELAÇÕES DO DIAGRAMA ---
-
-    // 1 Usuário Coordena N Feiras
-    // A chave estrangeira fica aqui na tabela 'feira'
+    // Relação N:1 com Usuário (Coordenador)
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    // 1 Feira Possui N Espaços
-    // mappedBy = "feira" indica que a classe Espaco é dona da relação (tem o FK)
-    @OneToMany(mappedBy = "feira", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Espaco> espacos = new ArrayList<>();
+    // Relação N:N com Expositor: Uma Feira pode ter vários Expositores e vice-versa.
+    // Cria uma tabela de associação FEIRA_EXPOSITOR (o JPA cuida da criação).
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "feira_expositor", // Nome da tabela de associação
+            joinColumns = @JoinColumn(name = "feira_id"), // Coluna que referencia Feira
+            inverseJoinColumns = @JoinColumn(name = "expositor_id") // Coluna que referencia Expositor
+    )
+    private List<Expositor> expositores;
 
+    @Transient
+    private List<Long> expositorIds;
 }

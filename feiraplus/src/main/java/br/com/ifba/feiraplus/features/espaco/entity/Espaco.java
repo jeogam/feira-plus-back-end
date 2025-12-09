@@ -1,5 +1,6 @@
 package br.com.ifba.feiraplus.features.espaco.entity;
 
+import br.com.ifba.feiraplus.features.espaco.enums.StatusEspaco;
 import br.com.ifba.feiraplus.features.feira.entity.Feira;
 import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.*;
@@ -28,6 +29,12 @@ public class Espaco extends PersistenceEntity {
 
     @Column(nullable = false)
     private String horarios; // Ex: "08:00 - 12:00"
+
+    @Column(length = 20)
+    private String dimensao;
+
+    @Enumerated(EnumType.STRING)
+    private StatusEspaco status;
 
     // RELACIONAMENTO: 1 Feira tem N Espaços
     @ManyToOne

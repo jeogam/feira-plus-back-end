@@ -1,11 +1,13 @@
 package br.com.ifba.feiraplus.features.feira.dto.request;
 
 import br.com.ifba.feiraplus.features.feira.enums.Frequencia;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalTime;
+import java.util.List; // Adicionado
 
 @Data
 public class FeiraPermanenteRequestDTO {
@@ -15,6 +17,10 @@ public class FeiraPermanenteRequestDTO {
 
     @NotBlank(message = "O local é obrigatório")
     private String local;
+
+    @NotNull(message = "O total de espaços é obrigatório")
+    @Min(value = 0, message = "O total de espaços não pode ser negativo")
+    private int espacos;
 
     @NotNull(message = "Hora de abertura é obrigatória")
     private LocalTime horaAbertura;
@@ -26,4 +32,7 @@ public class FeiraPermanenteRequestDTO {
     private Frequencia frequencia;
 
     private Long usuarioId;
+
+    // IDs dos expositores a serem associados à feira
+    private List<Long> expositorIds;
 }

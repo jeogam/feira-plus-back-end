@@ -4,7 +4,7 @@ import br.com.ifba.feiraplus.features.feira.entity.FeiraEvento;
 
 import java.util.List;
 
-public interface IFeiraEventoService {
+public interface  IFeiraEventoService {
 
   FeiraEvento save(FeiraEvento feira);
 

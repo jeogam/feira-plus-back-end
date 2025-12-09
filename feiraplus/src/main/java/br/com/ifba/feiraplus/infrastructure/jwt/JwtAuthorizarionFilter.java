@@ -44,10 +44,14 @@ public class JwtAuthorizarionFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        // 1. Busca o cabeçalho "Authorization" da requisição
-        final String authHeader = request.getHeader("Authorization");
+        // 🔥 Adicione esta verificação no início do método:
+        if (request.getMethod().equals("OPTIONS")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-        // 2. Verificação inicial: O cabeçalho existe? Começa com "Bearer "?
+        // 2. Busca o cabeçalho "Authorization" da requisição
+        final String authHeader = request.getHeader("Authorization");
         // Se não tiver token, apenas deixa a requisição passar.
         // (Se a rota for protegida, o Spring Security vai barrar mais na frente).
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
