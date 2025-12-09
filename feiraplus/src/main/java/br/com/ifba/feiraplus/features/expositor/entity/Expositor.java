@@ -22,8 +22,8 @@ public class Expositor {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "cpf_cnpj", nullable = false, unique = true)
-    private String cpfCnpj;
+    @Column(name = "documentacao", nullable = false, unique = true)
+    private String documentacao;
 
     @Column(nullable = false)
     private String telefone;
