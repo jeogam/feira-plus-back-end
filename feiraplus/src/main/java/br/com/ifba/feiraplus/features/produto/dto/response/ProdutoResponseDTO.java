@@ -11,4 +11,5 @@ public class ProdutoResponseDTO {
     private BigDecimal preco;
     private String foto;
     private String descricao;
+    private String nomeExpositor;
 }

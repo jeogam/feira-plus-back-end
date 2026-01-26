@@ -20,4 +20,6 @@ public class ProdutoRequestDTO {
     private String foto;
 
     private String descricao;
+
+    private Long expositorId;
 }

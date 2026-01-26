@@ -52,7 +52,7 @@ public class ExpositorController {
 
     // --- 2. GET (BUSCAR TODOS) ---
 
-    @GetMapping("/buscar-todos")
+        @GetMapping("/buscar-todos")
     public ResponseEntity<List<ExpositorGetDto>> findAll() {
         List<Expositor> expositores = expositorIService.findAll();
 

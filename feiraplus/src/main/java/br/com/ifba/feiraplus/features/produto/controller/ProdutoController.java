@@ -27,9 +27,16 @@ public class ProdutoController {
     @PostMapping("/cadastrar")
     @PreAuthorize("hasAnyRole('ADMIN', 'EXPOSITOR')")
     public ResponseEntity<ProdutoResponseDTO> save(@RequestBody @Valid ProdutoRequestDTO dto) {
+
         Produto produtoSalvo = produtoService.save(dto);
+
+        ProdutoResponseDTO response = objectMapperUtil.map(produtoSalvo, ProdutoResponseDTO.class);
+
+        if (produtoSalvo.getExpositor() != null) {// Garante que o nome do expositor seja preenchido manualmente
+            response.setNomeExpositor(produtoSalvo.getExpositor().getNome());
+        }
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(objectMapperUtil.map(produtoSalvo, ProdutoResponseDTO.class));
+                .body(response);
     }
 
     // --- ATUALIZAR ---
