@@ -22,4 +22,11 @@ public class ExpositorPostDto {
     // O Frontend envia apenas o ID da categoria selecionada
     @NotNull(message = "O ID da categoria é obrigatório")
     private Long categoriaId;
+
+    @NotBlank(message = "A descrição é obrigat´roia")
+    private String descricao;
+
+    @NotBlank(message = "O tipo de produto é obrigatório")
+    private String tipoProduto;
+
 }

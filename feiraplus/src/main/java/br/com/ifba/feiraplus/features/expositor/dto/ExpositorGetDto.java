@@ -16,4 +16,8 @@ public class ExpositorGetDto {
     // Informações da Categoria para exibição
     private Long categoriaId;
     private String categoriaNome;
+
+    private String descricao;
+    private String tipoProduto;
+
 }

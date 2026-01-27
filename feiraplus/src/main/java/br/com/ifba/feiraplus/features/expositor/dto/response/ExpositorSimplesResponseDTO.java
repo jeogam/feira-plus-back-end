@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor // <--- Necessário para o ModelMapper e Jackson (JSON)
-@AllArgsConstructor // <--- Necessário para o @Builder funcionar junto com o @NoArgsConstructor
+@NoArgsConstructor 
+@AllArgsConstructor
 public class ExpositorSimplesResponseDTO {
     private Long id;
     private String nome;

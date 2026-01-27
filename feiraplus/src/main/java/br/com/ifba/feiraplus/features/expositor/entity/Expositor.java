@@ -34,4 +34,11 @@ public class Expositor extends PersistenceEntity {
     // 'mappedBy' aponta para a propriedade na classe Feira que define a associação.
     @ManyToMany(mappedBy = "expositores")
     private List<Feira> feiras;
+
+    @Column(nullable = false, length = 255)
+    private String descricao;
+
+    @Column(nullable = false, length = 80)
+    private String tipoProduto; // ou Enum
+
 }
