@@ -63,13 +63,10 @@ public class ExpositorService implements ExpositorIService{
     @Override
     @Transactional
     public void delete(Long id) {
-
-
         Expositor expositor = this.findById(id);
             repository.delete(expositor);
 
     }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -100,13 +97,12 @@ public class ExpositorService implements ExpositorIService{
 
         // 3. Atualiza os dados do objeto existente
         expositorExistente.setNome(expositorDto.getNome());
-
         expositorExistente.setStatus(expositorDto.getStatus());
-
-        // 4. Atualiza o relacionamento
         expositorExistente.setCategoria(novaCategoria);
+        expositorExistente.setDescricao(expositorDto.getDescricao());
+        expositorExistente.setTipoProduto(expositorDto.getTipoProduto());
 
-        // 5. Salva (o JPA entende que é update porque o objeto já tem ID)
+        // 4. Salva (o JPA entende que é update porque o objeto já tem ID)
         return repository.save(expositorExistente);
     }
 }

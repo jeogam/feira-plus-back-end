@@ -45,6 +45,6 @@ public class Expositor extends PersistenceEntity {
     private String descricao;
 
     @Column(nullable = false, length = 80)
-    private String tipoProduto; // ou Enum
+    private String tipoProduto;
 
 }
