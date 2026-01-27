@@ -19,4 +19,6 @@ public class FeiraEventoResponseDTO {
 
     // Lista de expositores para a resposta
     private List<ExpositorSimplesResponseDTO> expositores;
+
+    private String foto;
 }

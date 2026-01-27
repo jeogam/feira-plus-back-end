@@ -101,6 +101,7 @@ public class ExpositorService implements ExpositorIService{
         expositorExistente.setCategoria(novaCategoria);
         expositorExistente.setDescricao(expositorDto.getDescricao());
         expositorExistente.setTipoProduto(expositorDto.getTipoProduto());
+        expositorExistente.setFoto(expositorDto.getFoto());
 
         // 4. Salva (o JPA entende que é update porque o objeto já tem ID)
         return repository.save(expositorExistente);

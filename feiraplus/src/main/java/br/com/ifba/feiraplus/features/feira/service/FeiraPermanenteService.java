@@ -59,6 +59,7 @@ public class FeiraPermanenteService implements IFeiraPermanenteService {
         existente.setHoraAbertura(feira.getHoraAbertura());
         existente.setHoraFechamento(feira.getHoraFechamento());
         existente.setFrequencia(feira.getFrequencia());
+        existente.setFoto(feira.getFoto());
 
         // Assume que o getter do campo @Transient Feira.expositorIds existe
         sincronizarExpositores(existente, feira.getExpositorIds());

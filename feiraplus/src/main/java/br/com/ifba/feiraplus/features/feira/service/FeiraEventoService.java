@@ -59,6 +59,7 @@ public class FeiraEventoService implements IFeiraEventoService {
         existente.setHoraFechamento(feira.getHoraFechamento());
         existente.setDataInicio(feira.getDataInicio());
         existente.setDataFim(feira.getDataFim());
+        existente.setFoto(feira.getFoto());
 
         // CORREÇÃO: Utiliza o getter do campo @Transient
         sincronizarExpositores(existente, feira.getExpositorIds());

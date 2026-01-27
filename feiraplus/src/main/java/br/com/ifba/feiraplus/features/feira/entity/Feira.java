@@ -55,4 +55,7 @@ public abstract class Feira extends PersistenceEntity {
 
     @Transient
     private List<Long> expositorIds;
+
+    @Column(name = "foto", columnDefinition = "TEXT")
+    private String foto;
 }

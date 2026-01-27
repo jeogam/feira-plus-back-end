@@ -35,4 +35,6 @@ public class FeiraPermanenteRequestDTO {
 
     // IDs dos expositores a serem associados à feira
     private List<Long> expositorIds;
+
+    private String foto;
 }
