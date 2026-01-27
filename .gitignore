@@ -25,3 +25,6 @@ replay_pid*
 /.env
 /feiraplus/src/main/resources/local.properties
 .idea
+
+# Debug files
+debug_*.md

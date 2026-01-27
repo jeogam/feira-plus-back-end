@@ -26,7 +26,6 @@ public class FeiraEventoController {
 
     private final IFeiraEventoService service;
 
-
     private final ModelMapper mapper;
 
     @PostMapping
