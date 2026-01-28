@@ -73,6 +73,13 @@ public class ProdutoController {
                 this.produtoService.findAll(),
                 ProdutoResponseDTO.class));
     }
+    @GetMapping("/listar-por-expositor/{expositorId}")
+    public ResponseEntity<List<ProdutoResponseDTO>> findByExpositor(@PathVariable Long expositorId) {
+        // Você precisaria criar esse método no service e repository
+        return ResponseEntity.ok(objectMapperUtil.mapAll(
+                this.produtoService.findByExpositorId(expositorId),
+                ProdutoResponseDTO.class));
+    }
 
     // Tratamento de erro simples para o controller
     @ExceptionHandler(IllegalArgumentException.class)

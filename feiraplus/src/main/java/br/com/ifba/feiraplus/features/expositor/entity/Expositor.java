@@ -44,8 +44,6 @@ public class Expositor extends PersistenceEntity {
     @Column(nullable = false, length = 255)
     private String descricao;
 
-    @Column(nullable = false, length = 80)
-    private String tipoProduto;
 
     @Column(name = "foto", columnDefinition = "TEXT")
     private String foto;

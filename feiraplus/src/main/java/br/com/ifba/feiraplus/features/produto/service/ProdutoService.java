@@ -34,6 +34,11 @@ public class ProdutoService implements ProdutoIService {
     }
 
     @Override
+    public List<Object> findByExpositorId(Long expositorId) {
+        return produtoRepository.findByExpositorId(expositorId);
+    }
+
+    @Override
     @Transactional
     public Produto save(ProdutoRequestDTO dto) {
 

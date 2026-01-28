@@ -18,7 +18,6 @@ public class ExpositorGetDto {
     private String categoriaNome;
 
     private String descricao;
-    private String tipoProduto;
 
     private String foto;
 

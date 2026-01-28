@@ -26,9 +26,6 @@ public class ExpositorPostDto {
     @NotBlank(message = "A descrição é obrigat´roia")
     private String descricao;
 
-    @NotBlank(message = "O tipo de produto é obrigatório")
-    private String tipoProduto;
-
     private String foto;
 
 }
