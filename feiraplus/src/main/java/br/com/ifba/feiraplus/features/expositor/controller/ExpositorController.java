@@ -4,6 +4,7 @@ import br.com.ifba.feiraplus.features.expositor.dto.ExpositorGetDto;
 import br.com.ifba.feiraplus.features.expositor.dto.ExpositorPostDto;
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.exception.ExpositorNaoEncontrado;
+import br.com.ifba.feiraplus.features.expositor.mapper.ExpositorMapper;
 import br.com.ifba.feiraplus.features.expositor.service.ExpositorIService;
 import br.com.ifba.feiraplus.infrastructure.mapper.ObjectMapperUtil;
 import jakarta.validation.Valid;
@@ -25,6 +26,9 @@ public class ExpositorController {
 
     private final ObjectMapperUtil objectMapperUtil;
     private final ExpositorIService expositorIService;
+    private final ExpositorMapper expositorMapper;
+
+
 
     // --- MÉTODO AUXILIAR---
     // Centraliza a conversão para não esquecer a categoria em nenhum lugar
@@ -57,9 +61,9 @@ public class ExpositorController {
         List<Expositor> expositores = expositorIService.findAll();
 
         // Converte a lista usando Stream e o nosso método auxiliar
-        List<ExpositorGetDto> dtos = expositores.stream()
-                .map(this::converterParaDto)
-                .collect(Collectors.toList());
+            List<ExpositorGetDto> dtos = expositores.stream()
+                    .map(expositorMapper::toDto)
+                    .collect(Collectors.toList());
 
         return ResponseEntity.ok(dtos);
     }

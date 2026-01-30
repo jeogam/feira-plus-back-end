@@ -1,5 +1,6 @@
 package br.com.ifba.feiraplus.features.feira.dto.response;
 
+import br.com.ifba.feiraplus.features.expositor.dto.ExpositorGetDto;
 import br.com.ifba.feiraplus.features.expositor.dto.response.ExpositorSimplesResponseDTO;
 import lombok.Data;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ public class FeiraEventoResponseDTO {
     private LocalDate dataFim;
 
     // Lista de expositores para a resposta
-    private List<ExpositorSimplesResponseDTO> expositores;
+    private List<ExpositorGetDto> expositores;
 
     private String foto;
 }

@@ -42,7 +42,8 @@ public class SecurityConfig {
                         // Rotas públicas (Login/Registro)
                         .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuarios/register").permitAll()
-
+                        .requestMatchers(HttpMethod.GET, "/feiras/eventos", "/feiras/eventos/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/feiras/permanentes", "/feiras/permanentes/**").permitAll()
                         // --- LIBERA O SWAGGER ---
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
 

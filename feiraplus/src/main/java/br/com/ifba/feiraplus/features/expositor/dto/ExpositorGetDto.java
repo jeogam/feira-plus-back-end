@@ -1,8 +1,12 @@
 package br.com.ifba.feiraplus.features.expositor.dto;
 
 import br.com.ifba.feiraplus.features.expositor.enums.StatusExpositor;
+import br.com.ifba.feiraplus.features.produto.dto.response.ProdutoResponseDTO;
+import br.com.ifba.feiraplus.features.produto.entity.Produto;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,7 +22,7 @@ public class ExpositorGetDto {
     private String categoriaNome;
 
     private String descricao;
-
+    private List<ProdutoResponseDTO> produtos;
     private String foto;
 
 }

@@ -1,5 +1,6 @@
 package br.com.ifba.feiraplus.features.feira.dto.response;
 
+import br.com.ifba.feiraplus.features.expositor.dto.ExpositorGetDto;
 import br.com.ifba.feiraplus.features.expositor.dto.response.ExpositorSimplesResponseDTO;
 import br.com.ifba.feiraplus.features.feira.enums.Frequencia;
 import lombok.Data;
@@ -17,7 +18,7 @@ public class FeiraPermanenteResponseDTO {
     private Frequencia frequencia;
 
     // Lista de expositores para a resposta
-    private List<ExpositorSimplesResponseDTO> expositores;
+    private List<ExpositorGetDto> expositores;
 
     private String foto;
 }

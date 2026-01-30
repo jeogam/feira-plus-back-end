@@ -2,9 +2,11 @@ package br.com.ifba.feiraplus.features.feira.service;
 
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.repository.ExpositorRepository;
+import br.com.ifba.feiraplus.features.feira.entity.FeiraEvento;
 import br.com.ifba.feiraplus.features.feira.entity.FeiraPermanente;
 import br.com.ifba.feiraplus.features.feira.exception.FeiraPermanenteNotFoundException;
 import br.com.ifba.feiraplus.features.feira.repository.FeiraPermanenteRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,13 +74,30 @@ public class FeiraPermanenteService implements IFeiraPermanenteService {
     @Override
     @Transactional
     public void delete(Long id) {
-        if (!repository.existsById(id)) {
-            throw new FeiraPermanenteNotFoundException(id);
-        }
-        repository.deleteById(id);
-        auditar("DELETAR", id);
-    }
+        // 1. Busca a feira que será excluída
+        FeiraPermanente feira = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Feira não encontrada"));
 
+        // 2. DESVINCULAR OS EXPOSITORES (Limpar a tabela de junção)
+        // Como é ManyToMany, precisamos ir em cada expositor e remover esta feira da lista dele
+        // para manter o Java consistente, e depois limpar a lista da feira.
+
+        for (Expositor expositor : feira.getExpositores()) {
+            // Remove a feira da lista de feiras do expositor
+            expositor.getFeiras().remove(feira);
+
+            // Opcional: Se necessário, salve o expositor (geralmente o cascade cuida ou o passo abaixo resolve)
+            // expositorRepository.save(expositor);
+        }
+
+        // 3. Limpa a lista de expositores da própria feira
+        // Isso é crucial no ManyToMany para o Hibernate entender que a relação acabou
+        feira.getExpositores().clear();
+
+        // 4. Agora pode apagar a feira.
+        // Como a lista de relações está vazia, não haverá erro de Foreign Key.
+        repository.delete(feira);
+    }
     // CORREÇÃO: Implementação do método findById que estava faltando
     @Override
     @Transactional(readOnly = true)

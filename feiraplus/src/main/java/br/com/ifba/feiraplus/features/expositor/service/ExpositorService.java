@@ -5,6 +5,7 @@ import br.com.ifba.feiraplus.features.categoria.repository.CategoriaRepository;
 import br.com.ifba.feiraplus.features.expositor.dto.ExpositorPostDto;
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.exception.ExpositorNaoEncontrado;
+import br.com.ifba.feiraplus.features.expositor.mapper.ExpositorMapper;
 import br.com.ifba.feiraplus.features.expositor.repository.ExpositorRepository;
 import br.com.ifba.feiraplus.infrastructure.exception.BusinessException;
 import br.com.ifba.feiraplus.infrastructure.mapper.ObjectMapperUtil;
@@ -27,6 +28,8 @@ public class ExpositorService implements ExpositorIService{
     private final CategoriaRepository categoriaRepository;
     private final ObjectMapperUtil mapUtil;
 
+    private ExpositorMapper expositorMapper;
+
     @Transactional
     public Expositor save(ExpositorPostDto expositorDto) {
 
@@ -47,7 +50,6 @@ public class ExpositorService implements ExpositorIService{
 
     @Transactional(readOnly = true)
     public List<Expositor> findAll() {
-
 
             return repository.findAll();
 
