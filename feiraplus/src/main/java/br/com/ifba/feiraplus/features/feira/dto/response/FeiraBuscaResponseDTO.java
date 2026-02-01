@@ -6,6 +6,7 @@ public class FeiraBuscaResponseDTO {
     private String local;
     private int espacos;
     private String tipoFeira;
+    private Float nota;
 
     // --- Getters e Setters Manuais (para substituir o @Data) ---
 
@@ -47,5 +48,13 @@ public class FeiraBuscaResponseDTO {
 
     public void setTipoFeira(String tipoFeira) {
         this.tipoFeira = tipoFeira;
+    }
+
+    public Float getNota() {
+        return nota;
+    }
+
+    public void setNota(Float nota) {
+        this.nota = nota;
     }
 }

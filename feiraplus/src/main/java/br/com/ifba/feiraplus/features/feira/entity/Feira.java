@@ -58,4 +58,7 @@ public abstract class Feira extends PersistenceEntity {
 
     @Column(name = "foto", columnDefinition = "TEXT")
     private String foto;
+
+    @Column(name = "nota")
+    private Float nota;
 }

@@ -1,9 +1,6 @@
 package br.com.ifba.feiraplus.features.feira.dto.request;
 
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -43,4 +40,8 @@ public class FeiraEventoRequestDTO {
     private List<Long> expositorIds;
 
     private String foto;
+
+    @Min(value = 1, message = "A nota deve ser no mínimo 1")
+    @Max(value = 5, message = "A nota deve ser no máximo 5")
+    private Float nota;
 }

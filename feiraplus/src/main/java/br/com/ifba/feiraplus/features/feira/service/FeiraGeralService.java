@@ -12,7 +12,6 @@ public class FeiraGeralService {
 
     private final FeiraRepository feiraRepository;
 
-    // Construtor manual para Injeção de Dependência
     public FeiraGeralService(FeiraRepository feiraRepository) {
         this.feiraRepository = feiraRepository;
     }
@@ -23,5 +22,10 @@ public class FeiraGeralService {
             return feiraRepository.findAll();
         }
         return feiraRepository.buscarPorArtesaoOuCategoria(termo);
+    }
+
+    // --- NOVO MÉTODO ---
+    public Double getMediaGeralAvaliacoes() {
+        return feiraRepository.calcularMediaGlobal();
     }
 }

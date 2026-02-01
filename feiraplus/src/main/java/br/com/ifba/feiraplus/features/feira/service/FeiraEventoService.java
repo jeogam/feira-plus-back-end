@@ -2,7 +2,6 @@ package br.com.ifba.feiraplus.features.feira.service;
 
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.repository.ExpositorRepository;
-import br.com.ifba.feiraplus.features.feira.entity.Feira;
 import br.com.ifba.feiraplus.features.feira.entity.FeiraEvento;
 import br.com.ifba.feiraplus.features.feira.exception.FeiraEventoNotFoundException;
 import br.com.ifba.feiraplus.features.feira.repository.FeiraEventoRepository;
@@ -18,14 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FeiraEventoService implements IFeiraEventoService {
 
-    // Injeção de repositórios
     private final FeiraEventoRepository repository;
     private final ExpositorRepository expositorRepository;
 
-    // Método auxiliar para sincronizar a lista de expositores
+    // Método auxiliar para vincular expositores via IDs
     private void sincronizarExpositores(FeiraEvento feira, List<Long> expositorIds) {
         if (expositorIds == null || expositorIds.isEmpty()) {
-            feira.setExpositores(new ArrayList<>());
+            // Se a lista for nula ou vazia, limpa os expositores (opcional, depende da regra de negócio)
+            // feira.setExpositores(new ArrayList<>());
             return;
         }
 
@@ -38,7 +37,7 @@ public class FeiraEventoService implements IFeiraEventoService {
     public FeiraEvento save(FeiraEvento feira) {
         validar(feira);
 
-        // CORREÇÃO: Utiliza o getter do campo @Transient que deve estar na Entidade Feira
+        // Vincula os expositores antes de salvar
         sincronizarExpositores(feira, feira.getExpositorIds());
 
         FeiraEvento saved = repository.save(feira);
@@ -54,6 +53,7 @@ public class FeiraEventoService implements IFeiraEventoService {
         FeiraEvento existente = repository.findById(id)
                 .orElseThrow(() -> new FeiraEventoNotFoundException(id));
 
+        // Atualiza campos
         existente.setNome(feira.getNome());
         existente.setLocal(feira.getLocal());
         existente.setEspacos(feira.getEspacos());
@@ -63,7 +63,10 @@ public class FeiraEventoService implements IFeiraEventoService {
         existente.setDataFim(feira.getDataFim());
         existente.setFoto(feira.getFoto());
 
-        // CORREÇÃO: Utiliza o getter do campo @Transient
+        // Atualiza a Nota
+        existente.setNota(feira.getNota());
+
+        // Atualiza Expositores
         sincronizarExpositores(existente, feira.getExpositorIds());
 
         FeiraEvento atualizado = repository.save(existente);
@@ -74,31 +77,17 @@ public class FeiraEventoService implements IFeiraEventoService {
     @Override
     @Transactional
     public void delete(Long id) {
-        // 1. Busca a feira que será excluída
         FeiraEvento feira = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Feira não encontrada"));
 
-        // 2. DESVINCULAR OS EXPOSITORES (Limpar a tabela de junção)
-        // Como é ManyToMany, precisamos ir em cada expositor e remover esta feira da lista dele
-        // para manter o Java consistente, e depois limpar a lista da feira.
-
+        // Remove associações ManyToMany para evitar erro de FK
         for (Expositor expositor : feira.getExpositores()) {
-            // Remove a feira da lista de feiras do expositor
             expositor.getFeiras().remove(feira);
-
-            // Opcional: Se necessário, salve o expositor (geralmente o cascade cuida ou o passo abaixo resolve)
-            // expositorRepository.save(expositor);
         }
-
-        // 3. Limpa a lista de expositores da própria feira
-        // Isso é crucial no ManyToMany para o Hibernate entender que a relação acabou
         feira.getExpositores().clear();
 
-        // 4. Agora pode apagar a feira.
-        // Como a lista de relações está vazia, não haverá erro de Foreign Key.
         repository.delete(feira);
     }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -114,26 +103,28 @@ public class FeiraEventoService implements IFeiraEventoService {
     }
 
     private void validar(FeiraEvento feira) {
-        // ... (restante da validação)
         if (feira.getNome() == null || feira.getNome().isBlank()) {
             throw new IllegalArgumentException("Nome é obrigatório");
         }
-
         if (feira.getLocal() == null || feira.getLocal().isBlank()) {
             throw new IllegalArgumentException("Local é obrigatório");
         }
-
         if (feira.getEspacos() < 0) {
             throw new IllegalArgumentException("O total de espaços não pode ser negativo");
         }
-
         if (feira.getDataInicio() != null && feira.getDataFim() != null &&
                 feira.getDataFim().isBefore(feira.getDataInicio())) {
             throw new IllegalArgumentException("Data fim não pode ser antes da data início");
         }
+
+        // Validação da Nota
+        if (feira.getNota() != null && (feira.getNota() < 1 || feira.getNota() > 5)) {
+            throw new IllegalArgumentException("A nota deve estar entre 1 e 5.");
+        }
     }
 
     private void auditar(String acao, Long id) {
-        System.out.println("AÇÃO: " + acao + " FEIRA: " + id);
+        // Log simples (pode ser substituído por SLF4J)
+        System.out.println("AÇÃO: " + acao + " FEIRA EVENTO: " + id);
     }
 }

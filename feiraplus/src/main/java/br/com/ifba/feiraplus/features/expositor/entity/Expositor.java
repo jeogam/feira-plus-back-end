@@ -47,4 +47,7 @@ public class Expositor extends PersistenceEntity {
 
     @Column(name = "foto", columnDefinition = "TEXT")
     private String foto;
+
+    @Column(name = "nota")
+    private Float nota;
 }

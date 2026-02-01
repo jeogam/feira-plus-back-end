@@ -19,18 +19,17 @@ public class ExpositorMapper {
 
         dto.setId(entity.getId());
         dto.setNome(entity.getNome());
-
         dto.setDescricao(entity.getDescricao());
-
         dto.setDocumentacao(entity.getDocumentacao());
-
         dto.setStatus(entity.getStatus());
-
         dto.setFoto(entity.getFoto());
+
+        // Mapeando a Nota
+        dto.setNota(entity.getNota());
 
         if (entity.getCategoria() != null) {
             dto.setCategoriaId(entity.getCategoria().getId());
-            dto.setCategoriaNome(entity.getCategoria().getNome()); // <--- Verifica se o método é getNome() mesmo
+            dto.setCategoriaNome(entity.getCategoria().getNome());
         }
 
         // --- LISTA DE PRODUTOS ---
@@ -43,6 +42,7 @@ public class ExpositorMapper {
                         pDto.setDescricao(prod.getDescricao());
                         pDto.setPreco(prod.getPreco());
                         pDto.setFoto(prod.getFoto());
+                        pDto.setNota(prod.getNota()); // Garante que a nota do produto também vá
                         return pDto;
                     })
                     .collect(Collectors.toList());

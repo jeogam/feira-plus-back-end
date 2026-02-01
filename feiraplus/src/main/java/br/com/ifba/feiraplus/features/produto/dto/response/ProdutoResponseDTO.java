@@ -12,4 +12,5 @@ public class ProdutoResponseDTO {
     private String foto;
     private String descricao;
     private String nomeExpositor;
+    private Float nota;
 }

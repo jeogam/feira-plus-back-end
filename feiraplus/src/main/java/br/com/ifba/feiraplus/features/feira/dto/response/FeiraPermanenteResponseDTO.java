@@ -21,4 +21,6 @@ public class FeiraPermanenteResponseDTO {
     private List<ExpositorGetDto> expositores;
 
     private String foto;
+
+    private Float nota;
 }

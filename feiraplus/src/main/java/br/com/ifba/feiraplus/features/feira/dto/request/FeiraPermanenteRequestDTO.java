@@ -1,6 +1,7 @@
 package br.com.ifba.feiraplus.features.feira.dto.request;
 
 import br.com.ifba.feiraplus.features.feira.enums.Frequencia;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -37,4 +38,8 @@ public class FeiraPermanenteRequestDTO {
     private List<Long> expositorIds;
 
     private String foto;
+
+    @Min(value = 1, message = "A nota deve ser no mínimo 1")
+    @Max(value = 5, message = "A nota deve ser no máximo 5")
+    private Float nota;
 }

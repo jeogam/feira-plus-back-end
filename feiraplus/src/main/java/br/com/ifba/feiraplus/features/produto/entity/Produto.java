@@ -34,4 +34,6 @@ public class Produto extends PersistenceEntity {
     @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
 
+    @Column(name = "nota")
+    private Float nota;
 }

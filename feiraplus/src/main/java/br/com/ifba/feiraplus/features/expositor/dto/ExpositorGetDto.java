@@ -25,4 +25,5 @@ public class ExpositorGetDto {
     private List<ProdutoResponseDTO> produtos;
     private String foto;
 
+    private Float nota;
 }

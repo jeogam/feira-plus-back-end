@@ -5,11 +5,9 @@ import br.com.ifba.feiraplus.features.categoria.repository.CategoriaRepository;
 import br.com.ifba.feiraplus.features.expositor.dto.ExpositorPostDto;
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.expositor.exception.ExpositorNaoEncontrado;
-import br.com.ifba.feiraplus.features.expositor.mapper.ExpositorMapper;
 import br.com.ifba.feiraplus.features.expositor.repository.ExpositorRepository;
 import br.com.ifba.feiraplus.infrastructure.exception.BusinessException;
 import br.com.ifba.feiraplus.infrastructure.mapper.ObjectMapperUtil;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,89 +20,92 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ExpositorService implements ExpositorIService{
+public class ExpositorService implements ExpositorIService {
 
     private final ExpositorRepository repository;
     private final CategoriaRepository categoriaRepository;
     private final ObjectMapperUtil mapUtil;
 
-    private ExpositorMapper expositorMapper;
+    // Novo método para média
+    public Double getMediaGeralAvaliacoes() {
+        return repository.calcularMediaGlobal();
+    }
 
+    @Override
     @Transactional
     public Expositor save(ExpositorPostDto expositorDto) {
+        validarNota(expositorDto.getNota()); // Validação
 
-        // 1. Converter os dados básicos (Nome, Documentação, Status)
         Expositor expositor = mapUtil.map(expositorDto, Expositor.class);
 
-        // 2. BUSCAR A CATEGORIA PELO ID (A parte que estava faltando!)
         Categoria categoria = categoriaRepository.findById(expositorDto.getCategoriaId())
                 .orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada com o ID: " + expositorDto.getCategoriaId()));
 
-        // 3. VINCULAR A CATEGORIA AO EXPOSITOR
         expositor.setCategoria(categoria);
+        // O mapUtil já deve copiar a nota se os nomes baterem, mas garantindo:
+        expositor.setNota(expositorDto.getNota());
 
-        // 4. Salvar no banco
         return repository.save(expositor);
     }
 
+    @Override
+    @Transactional
+    public Expositor update(Long id, ExpositorPostDto expositorDto) {
+        validarNota(expositorDto.getNota()); // Validação
+
+        Expositor expositorExistente = repository.findById(id)
+                .orElseThrow(() -> new ExpositorNaoEncontrado("Expositor não encontrado com o id: " + id));
+
+        Categoria novaCategoria = categoriaRepository.findById(expositorDto.getCategoriaId())
+                .orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada com o ID: " + expositorDto.getCategoriaId()));
+
+        expositorExistente.setNome(expositorDto.getNome());
+        expositorExistente.setStatus(expositorDto.getStatus());
+        expositorExistente.setCategoria(novaCategoria);
+        expositorExistente.setDescricao(expositorDto.getDescricao());
+        expositorExistente.setFoto(expositorDto.getFoto());
+        expositorExistente.setNota(expositorDto.getNota()); // Atualiza nota
+
+        return repository.save(expositorExistente);
+    }
+
+    // ... Outros métodos (findAll, findById, delete, buscarPorCategoria) mantêm-se iguais ...
 
     @Transactional(readOnly = true)
     public List<Expositor> findAll() {
-
-            return repository.findAll();
-
+        return repository.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Expositor  findById(Long id) {
+    public Expositor findById(Long id) {
         return repository.findById(id).orElseThrow(
-                () -> new ExpositorNaoEncontrado(String.format("Expositor com id %s  não encontrado", id)));
+                () -> new ExpositorNaoEncontrado(String.format("Expositor com id %s não encontrado", id)));
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
         Expositor expositor = this.findById(id);
-            repository.delete(expositor);
-
+        repository.delete(expositor);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<Expositor> buscarPorCategoria(String nomeCategoria, Pageable pageable) {
-
         Page<Expositor> paginaExpositores = repository.findByCategoriaNome(nomeCategoria, pageable);
-
         if (paginaExpositores.isEmpty()) {
             throw new ExpositorNaoEncontrado(
                     String.format("Nenhum expositor encontrado para a categoria '%s'", nomeCategoria)
             );
         }
-
         return paginaExpositores;
     }
 
-    @Override
-    @Transactional
-    public Expositor update(Long id, ExpositorPostDto expositorDto) {
-
-        // 1. Busca o expositor existente (ou lança erro se não existir)
-        Expositor expositorExistente = repository.findById(id)
-                .orElseThrow(() -> new ExpositorNaoEncontrado("Expositor não encontrado com o id: " + id));
-
-        // 2. Busca a nova Categoria pelo ID que veio no DTO
-        Categoria novaCategoria = categoriaRepository.findById(expositorDto.getCategoriaId())
-                .orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada com o ID: " + expositorDto.getCategoriaId()));
-
-        // 3. Atualiza os dados do objeto existente
-        expositorExistente.setNome(expositorDto.getNome());
-        expositorExistente.setStatus(expositorDto.getStatus());
-        expositorExistente.setCategoria(novaCategoria);
-        expositorExistente.setDescricao(expositorDto.getDescricao());
-        expositorExistente.setFoto(expositorDto.getFoto());
-
-        // 4. Salva (o JPA entende que é update porque o objeto já tem ID)
-        return repository.save(expositorExistente);
+    // Método auxiliar de validação
+    private void validarNota(Float nota) {
+        if (nota != null && (nota < 1 || nota > 5)) {
+            throw new BusinessException("A nota deve estar entre 1 e 5.");
+        }
     }
 }
