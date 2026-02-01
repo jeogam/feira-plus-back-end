@@ -26,9 +26,30 @@ public class FeiraGeralController {
     }
 
     @GetMapping("/pesquisar")
-    public ResponseEntity<List<FeiraBuscaResponseDTO>> pesquisar(@RequestParam(required = false, defaultValue = "") String termo) {
-        // ... código existente
-        return ResponseEntity.ok(response); // (Simplificado para brevidade)
+    public ResponseEntity<List<FeiraBuscaResponseDTO>> pesquisar(
+            @RequestParam(required = false, defaultValue = "") String termo) {
+
+        // 1. Busca as feiras no serviço
+        List<Feira> feirasEncontradas = feiraGeralService.pesquisarPorArtesaoOuCategoria(termo);
+
+        // 2. Mapeia para o DTO de resposta
+        List<FeiraBuscaResponseDTO> response = feirasEncontradas.stream()
+                .map(feira -> {
+                    FeiraBuscaResponseDTO dto = mapperUtil.map(feira, FeiraBuscaResponseDTO.class);
+
+                    // Define o tipo de feira para o front-end saber diferenciar
+                    if (feira instanceof FeiraEvento) {
+                        dto.setTipoFeira("EVENTO");
+                    } else if (feira instanceof FeiraPermanente) {
+                        dto.setTipoFeira("PERMANENTE");
+                    }
+
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        // 3. Retorna a lista (aqui a variável 'response' agora existe)
+        return ResponseEntity.ok(response);
     }
 
     // --- NOVO ENDPOINT: MÉDIA GERAL DAS FEIRAS ---
