@@ -9,12 +9,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-
-import org.springframework.security.web.SecurityFilterChain;
+    import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
 import java.util.List;
 
 @Configuration
@@ -43,16 +43,18 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         // Permite OPTIONS para CORS
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        
+
                         // Rotas públicas (Login/Registro)
                         .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuarios/register").permitAll()
                         // Rotas públicas customizadas
-                .requestMatchers(HttpMethod.POST, "/contato").permitAll()
-                // Apenas ADMIN pode listar mensagens de contato
-                .requestMatchers(HttpMethod.GET, "/contato/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/contato").permitAll()
+                        // Apenas ADMIN pode listar mensagens de contato
+                        .requestMatchers(HttpMethod.GET, "/contato/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/expositores/buscar-todos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/feiras/buscar-todas").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/eventos/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/eventos/cadastrar").hasAnyRole("ADMIN", "COORDENADOR")
                         // Rotas públicas já existentes
                         .requestMatchers(HttpMethod.GET, "/feiras/eventos", "/feiras/eventos/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/feiras/permanentes", "/feiras/permanentes/**").permitAll()
@@ -67,7 +69,6 @@ public class SecurityConfig {
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
     // CORS para permitir requisições do frontend local
     @Bean
     public CorsFilter corsFilter() {

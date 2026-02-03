@@ -1,12 +1,15 @@
 package br.com.ifba.feiraplus.features.feira.entity;
 
+import br.com.ifba.feiraplus.features.evento.entity.Evento;
 import br.com.ifba.feiraplus.features.expositor.entity.Expositor;
 import br.com.ifba.feiraplus.features.usuario.entity.Usuario;
 import br.com.ifba.feiraplus.infrastructure.entity.PersistenceEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -61,4 +64,9 @@ public abstract class Feira extends PersistenceEntity {
 
     @Column(name = "nota")
     private Float nota;
+
+    @OneToMany(mappedBy = "feira", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Evento> eventos = new ArrayList<>();
+}
 }
