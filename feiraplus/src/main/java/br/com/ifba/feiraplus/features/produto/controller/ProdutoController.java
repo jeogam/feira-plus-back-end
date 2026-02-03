@@ -72,4 +72,14 @@ public class ProdutoController {
     public ResponseEntity<String> handleBadRequest(Exception e) {
         return ResponseEntity.status(400).body(e.getMessage());
     }
+    // --- LISTAR POR EXPOSITOR      ---
+    // URL Final: GET /produtos/listar-por-expositor/1
+    @GetMapping("/listar-por-expositor/{expositorId}")
+    public ResponseEntity<List<ProdutoResponseDTO>> findByExpositor(@PathVariable Long expositorId) {
+        List<Produto> produtos = produtoService.findByExpositorId(expositorId);
+
+        return ResponseEntity.ok(objectMapperUtil.mapAll(
+                produtos,
+                ProdutoResponseDTO.class));
+    }
 }

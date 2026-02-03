@@ -1,6 +1,7 @@
 package br.com.ifba.feiraplus.features.feira.controller;
 
 import br.com.ifba.feiraplus.features.feira.dto.response.FeiraBuscaResponseDTO;
+import br.com.ifba.feiraplus.features.feira.dto.response.FeiraResponseDTO;
 import br.com.ifba.feiraplus.features.feira.entity.Feira;
 import br.com.ifba.feiraplus.features.feira.entity.FeiraEvento;
 import br.com.ifba.feiraplus.features.feira.entity.FeiraPermanente;
@@ -59,4 +60,15 @@ public class FeiraGeralController {
         Double media = feiraGeralService.getMediaGeralAvaliacoes();
         return ResponseEntity.ok(Map.of("media", media));
     }
+    @GetMapping("/buscar")
+    public ResponseEntity<List<FeiraResponseDTO>> findAll() {
+        // 1. Busca as entidades no banco
+        List<Feira> feiras = feiraGeralService.findAll();
+
+        // 2. Converte para DTO para evitar Loop Infinito e esconder dados sensíveis
+        List<FeiraResponseDTO> response = mapperUtil.mapAll(feiras, FeiraResponseDTO.class);
+
+        return ResponseEntity.ok(response);
+    }
+
 }

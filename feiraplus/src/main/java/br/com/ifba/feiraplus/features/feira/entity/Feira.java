@@ -68,5 +68,5 @@ public abstract class Feira extends PersistenceEntity {
     @OneToMany(mappedBy = "feira", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Evento> eventos = new ArrayList<>();
-}
+
 }

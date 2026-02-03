@@ -20,4 +20,7 @@ public class ProdutoRequestDTO {
     private String foto;
 
     private String descricao;
+
+    @NotNull(message = "O ID do expositor é obrigatório")
+    private Long expositorId;
 }

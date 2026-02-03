@@ -1,7 +1,7 @@
 package br.com.ifba.feiraplus.features.feira.dto.response;
 
+import br.com.ifba.feiraplus.features.evento.dto.response.EventoResponseDTO;
 import br.com.ifba.feiraplus.features.expositor.dto.ExpositorGetDto;
-import br.com.ifba.feiraplus.features.expositor.dto.response.ExpositorSimplesResponseDTO;
 import br.com.ifba.feiraplus.features.feira.enums.Frequencia;
 import lombok.Data;
 import java.time.LocalTime;
@@ -21,6 +21,8 @@ public class FeiraPermanenteResponseDTO {
     private List<ExpositorGetDto> expositores;
 
     private String foto;
+
+    private List<EventoResponseDTO> eventos;
 
     private Float nota;
 }

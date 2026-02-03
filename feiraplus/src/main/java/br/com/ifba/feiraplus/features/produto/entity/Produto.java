@@ -29,7 +29,7 @@ public class Produto extends PersistenceEntity {
     @Column(name = "preco", nullable = false)
     private BigDecimal preco;
 
-    @Column(name = "foto", columnDefinition = "LONGTEXT")
+    @Column(name = "foto", columnDefinition = "TEXT")
     private String foto;
 
     @Column(name = "descricao", columnDefinition = "TEXT")

@@ -28,4 +28,8 @@ public class FeiraGeralService {
     public Double getMediaGeralAvaliacoes() {
         return feiraRepository.calcularMediaGlobal();
     }
+
+    public List<Feira> findAll() {
+        return feiraRepository.findAll();
+    }
 }

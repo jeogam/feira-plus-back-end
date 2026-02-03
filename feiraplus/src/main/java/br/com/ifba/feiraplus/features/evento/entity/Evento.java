@@ -7,8 +7,15 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "eventos")
 public class Evento extends PersistenceEntity {
 
@@ -28,20 +35,5 @@ public class Evento extends PersistenceEntity {
     @JoinColumn(name = "feira_id", nullable = false)
     @JsonBackReference // Adicione esta anotação
     private Feira feira;
-
-    // Getters e Setters Manuais
-    public String getTitulo() { return titulo; }
-    public void setTitulo(String titulo) { this.titulo = titulo; }
-
-    public String getDescricao() { return descricao; }
-    public void setDescricao(String descricao) { this.descricao = descricao; }
-
-    public LocalDateTime getDataHoraInicio() { return dataHoraInicio; }
-    public void setDataHoraInicio(LocalDateTime dataHoraInicio) { this.dataHoraInicio = dataHoraInicio; }
-
-    public LocalDateTime getDataHoraFim() { return dataHoraFim; }
-    public void setDataHoraFim(LocalDateTime dataHoraFim) { this.dataHoraFim = dataHoraFim; }
-
-    public Feira getFeira() { return feira; }
-    public void setFeira(Feira feira) { this.feira = feira; }
 }
+

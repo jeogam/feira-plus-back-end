@@ -48,6 +48,7 @@ public class Contato extends PersistenceEntity {
         SUGESTAO("Sugestão"),
         DUVIDA("Dúvida"),
         ELOGIO("Elogio"),
+        QUERO_SER_EXPOSITOR("Quero ser Expositor"),
         RECLAMACAO("Reclamação"),
         OUTRO("Outro");
 
