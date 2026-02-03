@@ -16,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "expositor")
+@Table(name = "expositores")
 public class Expositor extends PersistenceEntity {
 
     @Column(nullable = false)
