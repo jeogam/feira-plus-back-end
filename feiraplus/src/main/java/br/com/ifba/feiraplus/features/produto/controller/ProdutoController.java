@@ -3,8 +3,7 @@ package br.com.ifba.feiraplus.features.produto.controller;
 import br.com.ifba.feiraplus.features.produto.dto.request.ProdutoRequestDTO;
 import br.com.ifba.feiraplus.features.produto.dto.response.ProdutoResponseDTO;
 import br.com.ifba.feiraplus.features.produto.entity.Produto;
-// Importante importar a implementação concreta ou ajustar a interface para ter o método novo
-import br.com.ifba.feiraplus.features.produto.service.ProdutoService;
+import br.com.ifba.feiraplus.features.produto.service.ProdutoIService;
 import br.com.ifba.feiraplus.infrastructure.mapper.ObjectMapperUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,32 +13,27 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    // Alterado para a classe concreta para acessar o novo método getMediaGeralAvaliacoes
-    // Ou você deve adicionar o método na interface ProdutoIService
-    private final ProdutoService produtoService;
+    private final ProdutoIService produtoService;
     private final ObjectMapperUtil objectMapperUtil;
 
     // --- CADASTRAR ---
+    // URL Final: POST /produtos/cadastrar
     @PostMapping("/cadastrar")
     @PreAuthorize("hasAnyRole('ADMIN', 'EXPOSITOR')")
     public ResponseEntity<ProdutoResponseDTO> save(@RequestBody @Valid ProdutoRequestDTO dto) {
         Produto produtoSalvo = produtoService.save(dto);
-        ProdutoResponseDTO response = objectMapperUtil.map(produtoSalvo, ProdutoResponseDTO.class);
-
-        if (produtoSalvo.getExpositor() != null) {
-            response.setNomeExpositor(produtoSalvo.getExpositor().getNome());
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(objectMapperUtil.map(produtoSalvo, ProdutoResponseDTO.class));
     }
 
     // --- ATUALIZAR ---
+    // URL Final: PUT /produtos/update/1
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'EXPOSITOR')")
     public ResponseEntity<ProdutoResponseDTO> update(@PathVariable Long id, @RequestBody @Valid ProdutoRequestDTO dto) {
@@ -48,6 +42,7 @@ public class ProdutoController {
     }
 
     // --- DELETAR ---
+    // URL Final: DELETE /produtos/delete/1
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'EXPOSITOR')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
@@ -56,6 +51,7 @@ public class ProdutoController {
     }
 
     // --- BUSCAR POR ID ---
+    // URL Final: GET /produtos/buscar/1
     @GetMapping("/buscar/{id}")
     public ResponseEntity<ProdutoResponseDTO> findById(@PathVariable Long id) {
         Produto produto = produtoService.findById(id);
@@ -63,6 +59,7 @@ public class ProdutoController {
     }
 
     // --- LISTAR TODOS ---
+    // URL Final: GET /produtos/buscar
     @GetMapping("/buscar")
     public ResponseEntity<List<ProdutoResponseDTO>> findAll() {
         return ResponseEntity.ok(objectMapperUtil.mapAll(
@@ -70,21 +67,7 @@ public class ProdutoController {
                 ProdutoResponseDTO.class));
     }
 
-    @GetMapping("/listar-por-expositor/{expositorId}")
-    public ResponseEntity<List<ProdutoResponseDTO>> findByExpositor(@PathVariable Long expositorId) {
-        return ResponseEntity.ok(objectMapperUtil.mapAll(
-                this.produtoService.findByExpositorId(expositorId),
-                ProdutoResponseDTO.class));
-    }
-
-    // --- NOVO: MÉDIA GERAL DAS NOTAS ---
-    // URL Final: GET /produtos/media-avaliacoes
-    @GetMapping("/media-avaliacoes")
-    public ResponseEntity<Map<String, Double>> getMediaAvaliacoes() {
-        Double media = produtoService.getMediaGeralAvaliacoes();
-        return ResponseEntity.ok(Map.of("media", media));
-    }
-
+    // Tratamento de erro simples para o controller
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleBadRequest(Exception e) {
         return ResponseEntity.status(400).body(e.getMessage());

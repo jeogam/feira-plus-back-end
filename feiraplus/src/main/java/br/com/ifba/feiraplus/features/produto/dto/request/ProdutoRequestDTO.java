@@ -1,6 +1,8 @@
 package br.com.ifba.feiraplus.features.produto.dto.request;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -18,10 +20,4 @@ public class ProdutoRequestDTO {
     private String foto;
 
     private String descricao;
-
-    private Long expositorId;
-
-    @Min(value = 1, message = "A nota deve ser no mínimo 1")
-    @Max(value = 5, message = "A nota deve ser no máximo 5")
-    private Float nota;
 }
